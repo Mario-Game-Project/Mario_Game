@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "Player.h"
+#include "Enemy.h"
 
 int main()
 {
@@ -22,7 +23,9 @@ int main()
     /*========================== Loading Assets ==========================*/
     sf::Texture spriteSheet;
     spriteSheet.loadFromFile("./Assets/Characters/SpriteSheet-32x64.png");
+
     Player player(spriteSheet, 21 * 32);
+    Enemy enemy(spriteSheet, 21 * 32);
     
     sf::Clock clock;
     /*-----------------------------------------------------------------*/
@@ -59,10 +62,15 @@ int main()
         player.applyGravity(delta);
         /*--------------------------------------------------------------------------*/
 
+        /*========================== Enemy Movements ==============================*/
+		enemy.update(delta);
+		/*--------------------------------------------------------------------------*/
+
         /*========================== Drawing ==============================*/
         window.clear();
 
 		player.draw(&window);
+        enemy.draw(&window);
 
         window.display();
     }
