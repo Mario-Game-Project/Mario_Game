@@ -75,6 +75,11 @@ void Player::applyGravity(float delta)
 	}
 }
 
+sf::Sprite* Player::getSprite()
+{
+	return &sprite;
+}
+
 void Player::draw(sf::RenderWindow* window)
 {
 	window->draw(sprite);

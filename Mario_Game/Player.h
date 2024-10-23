@@ -16,13 +16,13 @@ class Player
 	bool isMovingLeft;
 	bool isJumping;
 	float jumpSpeed;// Speed of the jump
-public : 
+public:
 	Player(sf::Texture& texture, float floor);
-	void moveRight(float);
-	void moveLeft(float);
+	void moveRight(float delta);
+	void moveLeft(float delta);
 	void jump();
-	void applyGravity(float);
-
+	void applyGravity(float delta);
+	sf::Sprite* getSprite();
 	void draw(sf::RenderWindow* window);
 };
 
