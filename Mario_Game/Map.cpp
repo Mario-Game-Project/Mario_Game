@@ -62,6 +62,8 @@ int Map::checkLeftCollision(sf::Sprite* sprite)
 			return res;
 		}
 	}
+
+	return -1;
 }
 
 int Map::checkRightCollision(sf::Sprite* sprite)
@@ -72,6 +74,7 @@ int Map::checkRightCollision(sf::Sprite* sprite)
 			return res;
 		}
 	}
+	return -1;
 }
 void Map::draw(sf::RenderWindow* window)
 {

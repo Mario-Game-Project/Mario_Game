@@ -50,19 +50,24 @@ int main()
 		}
 
 		/*========================== Player Movements ==============================*/
-
+		bool isMoving = false;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		{
 			player.moveRight(delta); // Right
+			isMoving = true;
 		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
 			player.moveLeft(delta); // Left
+
+			isMoving = true;
 		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 			player.jump();
+
+			isMoving = true;
 		}
 
 		player.applyGravity(delta);
@@ -72,16 +77,18 @@ int main()
 		// Down collision
 		{
 			int res = map.checkDownCollision(player.getSprite());
+
 			if (res > -1) {
-				std::cout << "Floor collsion detected " << std::endl;
+				player.getSprite()->setPosition(player.getSprite()->getPosition().x, res - 64);
+				player.isJumping = false;
 			}
 		}
-
+		
 		// Right collision
 		{
 			int res = map.checkRightCollision(player.getSprite());
 			if (res > -1) {
-				std::cout << "Pipe Right collsion detected " << std::endl;
+				player.getSprite()->setPosition(res - 32, player.getSprite()->getPosition().y);
 			}
 		}
 
@@ -89,9 +96,11 @@ int main()
 		{
 			int res = map.checkLeftCollision(player.getSprite());
 			if (res > -1) {
-				std::cout << "Pipe Left collsion detected " << std::endl;
+				player.getSprite()->setPosition(res, player.getSprite()->getPosition().y);
 			}
 		}
+
+		player.update(delta , isMoving);
 		/*--------------------------------------------------------------------------*/
 
 		/*========================== Enemy Movements ==============================*/
