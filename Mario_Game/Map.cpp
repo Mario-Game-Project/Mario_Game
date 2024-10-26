@@ -12,6 +12,14 @@ void Map::renderPipes()
 	pipes.push_back(pipe);
 }
 
+void Map::renderBricks()
+{
+	{
+		Brick* brick = new Brick(texture, 13, 19);
+		bricks.push_back(brick);
+	}
+}
+
 Map::Map(float winWidth, float winHeight)
 {
 	// Loading tilesheet
@@ -33,6 +41,7 @@ Map::Map(float winWidth, float winHeight)
 
 	renderFloor();
 	renderPipes();
+	renderBricks();
 }
 
 int Map::checkDownCollision(sf::Sprite* sprite)
@@ -51,6 +60,13 @@ int Map::checkDownCollision(sf::Sprite* sprite)
 		}
 	}
 
+	for (Brick* brick : bricks) {
+		int res = brick->checkDownCollision(sprite);
+		if (res > -1) {
+			return res;
+		}
+	}
+
 	return -1;
 }
 
@@ -58,6 +74,13 @@ int Map::checkLeftCollision(sf::Sprite* sprite)
 {
 	for (Pipe* pipe : pipes) {
 		int res = pipe->checkLeftCollision(sprite);
+		if (res > -1) {
+			return res;
+		}
+	}
+
+	for (Brick* brick : bricks) {
+		int res = brick->checkLeftCollision(sprite);
 		if (res > -1) {
 			return res;
 		}
@@ -74,8 +97,31 @@ int Map::checkRightCollision(sf::Sprite* sprite)
 			return res;
 		}
 	}
+
+	for (Brick* brick : bricks) {
+		int res = brick->checkRightCollision(sprite);
+		if (res > -1) {
+			return res;
+		}
+	}
+
 	return -1;
 }
+
+int Map::checkUpCollision(sf::Sprite* sprite)
+{
+
+	for (Brick* brick : bricks) {
+		int res = brick->checkUpCollision(sprite);
+
+		if (res > -1) {
+			return res;
+		}
+	}
+
+	return -1;
+}
+
 void Map::draw(sf::RenderWindow* window)
 {
 	window->draw(background);
@@ -84,5 +130,9 @@ void Map::draw(sf::RenderWindow* window)
 
 	for (Pipe* tile : pipes) tile->draw(window);
 
+	for (Brick* brick : bricks)
+	{
+		brick->draw(window);
+	}
 }
 

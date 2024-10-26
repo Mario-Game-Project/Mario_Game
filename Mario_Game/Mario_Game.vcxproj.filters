@@ -39,6 +39,9 @@
     <ClCompile Include="Pipe.cpp">
       <Filter>Source Files\Map Components</Filter>
     </ClCompile>
+    <ClCompile Include="Brick.cpp">
+      <Filter>Source Files\Map Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -54,6 +57,9 @@
       <Filter>Header Files\Map Components</Filter>
     </ClInclude>
     <ClInclude Include="Pipe.h">
+      <Filter>Header Files\Map Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Brick.h">
       <Filter>Header Files\Map Components</Filter>
     </ClInclude>
   </ItemGroup>

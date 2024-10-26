@@ -163,6 +163,7 @@ ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Brick.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="main.cpp" />
@@ -171,6 +172,7 @@ ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Brick.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="Map.h" />

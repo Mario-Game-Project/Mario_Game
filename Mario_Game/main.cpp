@@ -130,6 +130,14 @@ int main()
 			}
 		}
 
+		//Up Collision :
+		{
+			int res = map.checkUpCollision(player.getSprite());
+			if (res > -1) {
+				std::cout << "Collision Up" << std::endl;
+			}
+		}
+
 		player.update(delta, isMoving);
 		/*--------------------------------------------------------------------------*/
 
