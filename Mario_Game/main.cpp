@@ -26,8 +26,10 @@ int main()
 	spriteSheet.loadFromFile("./Assets/Characters/SpriteSheet-32x64.png");
 
 	Player player(spriteSheet, 21 * 32);
-	Enemy enemy(spriteSheet, 21 * 32);
 
+	Enemy enemy;
+	enemy.load();
+	enemy.pos(15 * 32, 21 * 32);
 	sf::Clock clock;
 	/*-----------------------------------------------------------------*/
 
@@ -83,12 +85,32 @@ int main()
 				player.isJumping = false;
 			}
 		}
-		
+		{
+			int res = map.checkDownCollision(enemy.getSprite());
+			if (res > -1) {
+				//std::cout << "bro" << std::endl << std::endl;
+				enemy.isGrounded = true;
+			}
+			else {
+				enemy.isGrounded = false;
+			}
+
+			enemy.applyGravity(delta);
+		}
+
 		// Right collision
 		{
 			int res = map.checkRightCollision(player.getSprite());
 			if (res > -1) {
 				player.getSprite()->setPosition(res - 32, player.getSprite()->getPosition().y);
+			}
+		}
+		{
+			int res = map.checkRightCollision(enemy.getSprite());
+			if (res > -1) {
+				enemy.enemyMovingLeft = true;
+				enemy.enemyMovingRight = false;
+
 			}
 		}
 
@@ -100,11 +122,19 @@ int main()
 			}
 		}
 
-		player.update(delta , isMoving);
+		{
+			int res = map.checkLeftCollision(enemy.getSprite());
+			if (res > -1) {
+				enemy.enemyMovingRight = true;
+				enemy.enemyMovingLeft = false;
+			}
+		}
+
+		player.update(delta, isMoving);
 		/*--------------------------------------------------------------------------*/
 
 		/*========================== Enemy Movements ==============================*/
-		enemy.update(delta);
+		enemy.update(delta );
 		/*--------------------------------------------------------------------------*/
 
 		/*========================== Drawing ==============================*/
@@ -112,7 +142,7 @@ int main()
 
 		map.draw(&window);
 		player.draw(&window);
-		enemy.draw(&window);
+		enemy.draw(window);
 
 		window.display();
 	}
