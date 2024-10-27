@@ -82,7 +82,10 @@ int main()
 
 			if (res > -1) {
 				player.getSprite()->setPosition(player.getSprite()->getPosition().x, res - 64);
-				player.isJumping = false;
+				player.canMoveDown = false;
+			}
+			else {
+				player.canMoveDown = true;
 			}
 		}
 		{
@@ -134,8 +137,16 @@ int main()
 		{
 			int res = map.checkUpCollision(player.getSprite());
 			if (res > -1) {
-				std::cout << "Collision Up" << std::endl;
+				player.getSprite()->setPosition(player.getSprite()->getPosition().x, res);
+				player.canMoveUp = false;
 			}
+			else {
+				player.canMoveUp = true;
+			}
+		}
+
+		if (map.checkPowerUp(player.getSprite())) {
+			player.Upgrade();
 		}
 
 		player.update(delta, isMoving);
