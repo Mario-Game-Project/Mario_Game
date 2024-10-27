@@ -2,6 +2,8 @@
 #include "Floor.h"
 #include "Pipe.h"
 #include "Brick.h"
+#include "QuestionBlock.h"
+#include "Stone.h"
 
 #pragma once
 class Map
@@ -13,10 +15,13 @@ class Map
 	std::vector<Floor*> floors;
 	std::vector<Pipe*> pipes;
 	std::vector<Brick*> bricks;
+	std::vector<QuestionBlock*> blocks;
+	std::vector<Stone*> stones;
 
 	void renderFloor();
 	void renderPipes();
-	void renderBricks();
+	void renderBricksBlocks();
+	void renderStones();
 
 public:
 	Map(float winWidth, float winHeight);
@@ -24,7 +29,8 @@ public:
 	int checkLeftCollision(sf::Sprite* sprite);
 	int checkRightCollision(sf::Sprite* sprite);
 
-	int checkUpCollision(sf::Sprite* sprite);
-	void draw(sf::RenderWindow* window);
+	int checkUpCollision(sf::Sprite* sprite , bool isBig);
+	bool checkPowerUp(sf::Sprite* sprite);
+	void draw(sf::RenderWindow* window , float delta);
 };
 

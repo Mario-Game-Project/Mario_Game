@@ -25,7 +25,7 @@ int main()
 	sf::Texture spriteSheet;
 	spriteSheet.loadFromFile("./Assets/Characters/SpriteSheet-32x64.png");
 
-	Player player(spriteSheet, 21 * 32);
+	Player player(spriteSheet, 20 * 32);
 
 	Enemy enemy;
 	enemy.load();
@@ -86,6 +86,7 @@ int main()
 			}
 			else {
 				player.canMoveDown = true;
+				
 			}
 		}
 		{
@@ -135,7 +136,7 @@ int main()
 
 		//Up Collision :
 		{
-			int res = map.checkUpCollision(player.getSprite());
+			int res = map.checkUpCollision(player.getSprite(), player.isBig);
 			if (res > -1) {
 				player.getSprite()->setPosition(player.getSprite()->getPosition().x, res);
 				player.canMoveUp = false;
@@ -159,7 +160,7 @@ int main()
 		/*========================== Drawing ==============================*/
 		window.clear();
 
-		map.draw(&window);
+		map.draw(&window, delta);
 		player.draw(&window);
 		enemy.draw(window);
 
@@ -168,3 +169,4 @@ int main()
 
 	return 0;
 }
+

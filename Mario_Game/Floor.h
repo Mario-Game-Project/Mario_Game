@@ -7,6 +7,8 @@ class Floor
 public:
 	Floor(sf::Texture& texture, int posTilesX, int posTilesY, int tilesN);
 	int checkDownCollision(sf::Sprite* sprite);
+	int checkRightCollision(sf::Sprite* sprite);
+	int checkLeftCollision(sf::Sprite* sprite);
 	void draw(sf::RenderWindow* window);
 };
 

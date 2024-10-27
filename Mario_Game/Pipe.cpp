@@ -51,7 +51,7 @@ int Pipe::checkLeftCollision(sf::Sprite* sprite)
 {
 	float spriteTop = sprite->getGlobalBounds().top;
 	float spriteBottom = spriteTop + sprite->getGlobalBounds().height;
-	float spriteLeft = sprite->getGlobalBounds().left + 10; // `+10` to fix player sprite's empty spaces in side creating bug
+	float spriteLeft = sprite->getGlobalBounds().left + 10;// `+10` to fix player sprite's empty spaces in side creating bug
 	float spriteRight = spriteLeft + sprite->getGlobalBounds().width - 20;
 
 

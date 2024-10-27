@@ -42,6 +42,12 @@
     <ClCompile Include="Brick.cpp">
       <Filter>Source Files\Map Components</Filter>
     </ClCompile>
+    <ClCompile Include="QuestionBlock.cpp">
+      <Filter>Source Files\Map Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Stone.cpp">
+      <Filter>Source Files\Map Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -61,6 +67,12 @@
     </ClInclude>
     <ClInclude Include="Brick.h">
       <Filter>Header Files\Map Components</Filter>
+    </ClInclude>
+    <ClInclude Include="QuestionBlock.h">
+      <Filter>Header Files\Map Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Stone.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
