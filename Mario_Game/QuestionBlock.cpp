@@ -61,7 +61,7 @@ void QuestionBlock::powerAnimation(Map* map, float delta)
 			powerSpeedX = -100;
 		}
 
-		int resLeft = map->checkLeftCollision(&powerUp);
+		int resLeft = map->checkLeftCollision(&powerUp , false);
 		if (resLeft > -1) {
 			powerSpeedX = 100;
 		}

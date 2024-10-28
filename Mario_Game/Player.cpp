@@ -85,7 +85,7 @@ void Player::jump()
 {
 	if (!canMoveDown) {  // only jump when character is on the floor
 		canMoveDown= true;
-		sprite.move(0,5); // to break contact from floor
+		sprite.move(0,-5); // to break contact from floor
 		speedY = -jumpSpeed; // Set initial jump velocity
 	}
 }

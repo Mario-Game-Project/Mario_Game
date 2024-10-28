@@ -72,7 +72,7 @@
       <Filter>Header Files\Map Components</Filter>
     </ClInclude>
     <ClInclude Include="Stone.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Map Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

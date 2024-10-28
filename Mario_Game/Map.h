@@ -17,6 +17,10 @@ class Map
 	std::vector<Brick*> bricks;
 	std::vector<QuestionBlock*> blocks;
 	std::vector<Stone*> stones;
+	sf::View view;
+
+	int viewSpeed;
+	int mapEnd;
 
 	void renderFloor();
 	void renderPipes();
@@ -26,11 +30,12 @@ class Map
 public:
 	Map(float winWidth, float winHeight);
 	int checkDownCollision(sf::Sprite* sprite);
-	int checkLeftCollision(sf::Sprite* sprite);
+	int checkLeftCollision(sf::Sprite* sprite , bool isMario);
 	int checkRightCollision(sf::Sprite* sprite);
 
 	int checkUpCollision(sf::Sprite* sprite , bool isBig);
 	bool checkPowerUp(sf::Sprite* sprite);
 	void draw(sf::RenderWindow* window , float delta);
+	void mapView(sf::Sprite* sprite , float delta);
 };
 

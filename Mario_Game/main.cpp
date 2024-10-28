@@ -25,7 +25,7 @@ int main()
 	sf::Texture spriteSheet;
 	spriteSheet.loadFromFile("./Assets/Characters/SpriteSheet-32x64.png");
 
-	Player player(spriteSheet, 20 * 32);
+	Player player(spriteSheet, 21 * 32);
 
 	Enemy enemy;
 	enemy.load();
@@ -36,6 +36,7 @@ int main()
 	//========================== Map ==============================
 
 	Map map(winWidth, winHeight);
+
 	/*-----------------------------------------------------------------*/
 
 	/*========================== Game Loop =================================*/
@@ -72,7 +73,6 @@ int main()
 			isMoving = true;
 		}
 
-		player.applyGravity(delta);
 		/*--------------------------------------------------------------------------*/
 
 		/*========================== Player Collisions ==============================*/
@@ -120,14 +120,14 @@ int main()
 
 		// Left collision
 		{
-			int res = map.checkLeftCollision(player.getSprite());
+			int res = map.checkLeftCollision(player.getSprite() , true);
 			if (res > -1) {
 				player.getSprite()->setPosition(res, player.getSprite()->getPosition().y);
 			}
 		}
 
 		{
-			int res = map.checkLeftCollision(enemy.getSprite());
+			int res = map.checkLeftCollision(enemy.getSprite() , false);
 			if (res > -1) {
 				enemy.enemyMovingRight = true;
 				enemy.enemyMovingLeft = false;
@@ -151,6 +151,10 @@ int main()
 		}
 
 		player.update(delta, isMoving);
+
+		player.applyGravity(delta);
+
+		map.mapView(player.getSprite() , delta);
 		/*--------------------------------------------------------------------------*/
 
 		/*========================== Enemy Movements ==============================*/
