@@ -5,17 +5,19 @@ C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Brick.cpp(93,10): warning C4244:
 C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Brick.cpp(109,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Brick.cpp(110,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Brick.cpp(126,10): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+  Enemies.cpp
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemies.cpp(38,78): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Enemy.cpp
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(19,38): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(19,38): warning C4244:         with
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(19,38): warning C4244:         [
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(19,38): warning C4244:             T=float
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(19,38): warning C4244:         ]
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(19,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(19,35): warning C4244:         with
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(19,35): warning C4244:         [
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(19,35): warning C4244:             T=float
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(19,35): warning C4244:         ]
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(16,38): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(16,38): warning C4244:         with
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(16,38): warning C4244:         [
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(16,38): warning C4244:             T=float
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(16,38): warning C4244:         ]
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(16,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(16,35): warning C4244:         with
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(16,35): warning C4244:         [
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(16,35): warning C4244:             T=float
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(16,35): warning C4244:         ]
   Floor.cpp
 C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Floor.cpp(13,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Floor.cpp(13,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
@@ -25,12 +27,12 @@ C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Floor.cpp(43,11): warning C4244:
 C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Floor.cpp(67,10): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
 C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Floor.cpp(91,10): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
   main.cpp
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\main.cpp(38,20): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\main.cpp(38,10): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\main.cpp(84,78): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\main.cpp(109,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\main.cpp(125,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\main.cpp(141,74): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\main.cpp(37,20): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\main.cpp(37,10): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\main.cpp(83,78): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\main.cpp(96,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\main.cpp(104,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\main.cpp(113,74): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Map.cpp
 C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(283,57): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(283,49): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
@@ -89,9 +91,9 @@ sfml-graphics-s-d.lib(RectangleShape.obj) : warning LNK4099: PDB '' was not foun
 sfml-graphics-s-d.lib(RenderTarget.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(RenderTarget.obj)' or at ''; linking object as if no debug info
 sfml-graphics-s-d.lib(Sprite.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(Sprite.obj)' or at ''; linking object as if no debug info
 sfml-graphics-s-d.lib(RenderStates.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(RenderStates.obj)' or at ''; linking object as if no debug info
-sfml-graphics-s-d.lib(Texture.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(Texture.obj)' or at ''; linking object as if no debug info
 sfml-graphics-s-d.lib(Color.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(Color.obj)' or at ''; linking object as if no debug info
 sfml-graphics-s-d.lib(Image.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(Image.obj)' or at ''; linking object as if no debug info
+sfml-graphics-s-d.lib(Texture.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(Texture.obj)' or at ''; linking object as if no debug info
 sfml-graphics-s-d.lib(RenderWindow.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(RenderWindow.obj)' or at ''; linking object as if no debug info
 sfml-graphics-s-d.lib(View.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(View.obj)' or at ''; linking object as if no debug info
 sfml-graphics-s-d.lib(Transform.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(Transform.obj)' or at ''; linking object as if no debug info
@@ -102,8 +104,8 @@ sfml-graphics-s-d.lib(Shader.obj) : warning LNK4099: PDB '' was not found with '
 sfml-graphics-s-d.lib(VertexBuffer.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(VertexBuffer.obj)' or at ''; linking object as if no debug info
 sfml-graphics-s-d.lib(GLExtensions.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(GLExtensions.obj)' or at ''; linking object as if no debug info
 sfml-graphics-s-d.lib(GLCheck.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(GLCheck.obj)' or at ''; linking object as if no debug info
-sfml-graphics-s-d.lib(TextureSaver.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(TextureSaver.obj)' or at ''; linking object as if no debug info
 sfml-graphics-s-d.lib(ImageLoader.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(ImageLoader.obj)' or at ''; linking object as if no debug info
+sfml-graphics-s-d.lib(TextureSaver.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(TextureSaver.obj)' or at ''; linking object as if no debug info
 sfml-graphics-s-d.lib(RenderTextureImplFBO.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(RenderTextureImplFBO.obj)' or at ''; linking object as if no debug info
 sfml-graphics-s-d.lib(Glsl.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(Glsl.obj)' or at ''; linking object as if no debug info
 sfml-graphics-s-d.lib(RenderTextureImpl.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(RenderTextureImpl.obj)' or at ''; linking object as if no debug info

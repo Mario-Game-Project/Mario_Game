@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Map.h"
+#include "Enemies.h"
 
 int main()
 {
@@ -27,12 +28,10 @@ int main()
 
 	Player player(spriteSheet, 21 * 32);
 
-	Enemy enemy;
-	enemy.load();
-	enemy.pos(15 * 32, 21 * 32);
 	sf::Clock clock;
 	/*-----------------------------------------------------------------*/
 
+	Enemies enemies(&spriteSheet);
 	//========================== Map ==============================
 
 	Map map(winWidth, winHeight);
@@ -89,32 +88,12 @@ int main()
 				
 			}
 		}
-		{
-			int res = map.checkDownCollision(enemy.getSprite());
-			if (res > -1) {
-				//std::cout << "bro" << std::endl << std::endl;
-				enemy.isGrounded = true;
-			}
-			else {
-				enemy.isGrounded = false;
-			}
-
-			enemy.applyGravity(delta);
-		}
 
 		// Right collision
 		{
 			int res = map.checkRightCollision(player.getSprite());
 			if (res > -1) {
 				player.getSprite()->setPosition(res - 32, player.getSprite()->getPosition().y);
-			}
-		}
-		{
-			int res = map.checkRightCollision(enemy.getSprite());
-			if (res > -1) {
-				enemy.enemyMovingLeft = true;
-				enemy.enemyMovingRight = false;
-
 			}
 		}
 
@@ -126,13 +105,6 @@ int main()
 			}
 		}
 
-		{
-			int res = map.checkLeftCollision(enemy.getSprite() , false);
-			if (res > -1) {
-				enemy.enemyMovingRight = true;
-				enemy.enemyMovingLeft = false;
-			}
-		}
 
 		//Up Collision :
 		{
@@ -158,16 +130,16 @@ int main()
 		/*--------------------------------------------------------------------------*/
 
 		/*========================== Enemy Movements ==============================*/
-		enemy.update(delta );
+		enemies.update(&map , delta);
+		enemies.checkDeath(player.getSprite());
 		/*--------------------------------------------------------------------------*/
 
 		/*========================== Drawing ==============================*/
 		window.clear();
 
 		map.draw(&window, delta);
+		enemies.draw(&window);
 		player.draw(&window);
-		enemy.draw(window);
-
 		window.display();
 	}
 

@@ -5,31 +5,24 @@
 using namespace sf;
 class Enemy
 {
+    Sprite enemySprite;
+    Clock enemyClock;
+
+    float enemySpeed_X;
+    int col;
+    int row;
+    float gravity ;
+    float enemySpeed_Y;
+    int deadAnimeCounter;
+
 public:
-    float enemySpeed = 85.0f;  // Adjust as needed for speed
-    Texture enemytexture;
-    Sprite enemysprite;
-    int col = 0;
-    Clock enemyclock;
-    bool deadBool;
-    int deadAnimeCounter = 0;
-    //float leftLimit = 400.0f;   // The left boundary for enemy movement
-    //float rightLimit = 600.0f;
-    float gravity = 980.0f;
-    bool enemydied = false;
-    Vector2f enemyPosition = enemysprite.getPosition();
-    bool enemyMovingRight = true;
-    bool enemyMovingLeft = false;
-    float verticalVelocity = 0.0f;
-    bool isGrounded = false;
-    bool enemymoving = true;
-    void load();
-    void pos(int x, int y);
-    void applyGravity(float delta);
-    void stopFalling();
-    void update(float deltaTime);
+    bool isGrounded;
+    bool enemyMovingRight;
+    bool enemyDied;
+
+    Enemy( sf::Texture* texture, int x , int y);
     void checkCollisionWithPlayer(Sprite& player);
-    void draw(sf::RenderWindow& window);
+    void update(float deltaTime);
     sf::Sprite* getSprite();
-    void deadanimation();
+    void draw(sf::RenderWindow* window);
 };
