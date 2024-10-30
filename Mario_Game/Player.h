@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include "Enemy.h"
 #pragma once
 class Player
 {
@@ -7,6 +8,7 @@ class Player
 	int spriteWidth;
 	int spriteHeight;
 	sf::Clock spriteClock;
+	sf::Clock InvisiblityClock;
 	sf::Sprite sprite;
 
 	int speedX;  // Horizontal speed
@@ -14,21 +16,24 @@ class Player
 	float gravity;     // Gravity force
 	bool isMovingLeft; 
 	float jumpSpeed;// Speed of the jump
+	bool freeze; 
+	int alpha;
 public:
 	bool canMoveRight;
 	bool canMoveLeft;
 	bool canMoveUp;
 	bool canMoveDown;
-	//bool isJumping;
+	bool isDied;
 	bool isBig;
+	bool isInvisible;
 	Player(sf::Texture& texture, float floor);
+	sf::Sprite* getSprite();
 	void moveRight(float delta);
 	void moveLeft(float delta);
-	void update(float delta , bool isMoving);
 	void jump();
-	void applyGravity(float delta);
-	sf::Sprite* getSprite();
-	void setPosition( int x  , int y);
+	void enemyKilled();
+	void checkEnemyCollision(sf::Sprite* enemy);
+	void update(float delta, bool isMoving);
 	void Upgrade();
 	void draw(sf::RenderWindow* window);
 };

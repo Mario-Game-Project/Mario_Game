@@ -57,11 +57,15 @@ void Enemies::update(Map* map, float delta)
 	}
 }
 
-void Enemies::checkDeath(sf::Sprite* sprite)
+bool Enemies::checkPlayerCollision(sf::Sprite* sprite)
 {
 	for (Enemy* enemy : enemies) {
-		enemy->checkCollisionWithPlayer(*sprite);
+		if(!enemy->enemyDied){
+			enemy->checkCollisionWithPlayer(*sprite);
+			if (enemy->enemyDied) return true;
+		}
 	}
+	return false;
 }
 
 void Enemies::draw(sf::RenderWindow* window)

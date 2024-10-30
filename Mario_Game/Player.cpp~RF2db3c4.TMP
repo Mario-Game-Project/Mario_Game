@@ -18,8 +18,7 @@ Player::Player(sf::Texture& texture, float floor) :
 	isBig(false),
 	isDied(false),
 	isInvisible(false),
-	freeze(false),
-	alpha(255)
+	freeze(false)
 {
 	sprite.setTexture(texture);
 	sprite.setTextureRect(sf::IntRect(col * spriteWidth, row * spriteHeight, spriteWidth, spriteHeight));
@@ -52,11 +51,6 @@ void Player::jump()
 	}
 }
 
-void Player::enemyKilled()
-{
-	speedY = -200;
-}
-
 void Player::checkEnemyCollision(sf::Sprite* enemy)
 {
 	float spriteTop = sprite.getGlobalBounds().top;
@@ -64,8 +58,8 @@ void Player::checkEnemyCollision(sf::Sprite* enemy)
 	float spriteLeft = sprite.getGlobalBounds().left;
 	float spriteRight = spriteLeft + spriteWidth;
 
-	float enemyTop = enemy->getGlobalBounds().top + 45;
-	float enemyBottom = enemyTop + enemy->getGlobalBounds().height - 45;
+	float enemyTop = enemy->getGlobalBounds().top + 40;
+	float enemyBottom = enemyTop + enemy->getGlobalBounds().height - 40;
 	float enemyLeft = enemy->getGlobalBounds().left + 10;
 	float enemyRight = enemyLeft + enemy->getGlobalBounds().width - 20;
 
@@ -74,14 +68,20 @@ void Player::checkEnemyCollision(sf::Sprite* enemy)
 	if (enemy->getGlobalBounds().intersects(sprite.getGlobalBounds())
 		&& !isDied
 		&& !isInvisible
-		&&enemyLeft < spriteRight
-		&& enemyRight > spriteLeft
+		&& (
+			(// Right collision 
+				enemyLeft > spriteLeft
+				&& enemyLeft <= spriteRight)
+			|| (// Left collision
+				enemyRight < spriteRight
+				&& enemyRight >= spriteLeft)
+			)
 		&& enemyTop < spriteBottom
 		) {
 
 		if (isBig) {
-			freeze = true;
-			spriteClock.restart();
+			isInvisible = true;
+			InvisiblityClock.restart();
 			row = row - 2;
 			isBig = false;
 		}
@@ -99,19 +99,7 @@ void Player::update(float delta, bool isMoving)
 	/*================== Freeze ==================*/
 	if (freeze) {
 		freeze = spriteClock.getElapsedTime().asMilliseconds() > 1000 ? false : true;
-		isInvisible = true;
-		if (InvisiblityClock.getElapsedTime().asMilliseconds() > 50 ) {
-			InvisiblityClock.restart();
-			alpha = alpha > 0 ? 0 : 128;
-			sprite.setColor(sf::Color(255, 255, 255, alpha));
-		}
 		return; // do not do any type of movement when freezed ( usually when upgraded )
-	}
-
-	/*============================= Invisibility ==============================*/
-	if (isInvisible) {
-		isInvisible = InvisiblityClock.getElapsedTime().asMilliseconds() > 1000 ? false : true;
-		if (!isInvisible) sprite.setColor(sf::Color(255, 255, 255, 255));
 	}
 
 	/*=================== Left - Right Movements ================*/
@@ -164,6 +152,11 @@ void Player::update(float delta, bool isMoving)
 		col = 4;
 	}
 
+	/*============================= Invisibility ==============================*/
+	if (isInvisible) {
+		isInvisible = InvisiblityClock.getElapsedTime().asMilliseconds() > 1000 ? false : true;
+	}
+
 	sprite.move(speedX * delta, speedY * delta);
 
 }
@@ -172,7 +165,9 @@ void Player::Upgrade()
 	if (!isBig) {
 		row = row + 2;
 		freeze = true;
+		isInvisible = true;
 		spriteClock.restart();
+		InvisiblityClock.restart();
 		isBig = true;
 	}
 }

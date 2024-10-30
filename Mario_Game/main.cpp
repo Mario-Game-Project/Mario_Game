@@ -79,7 +79,7 @@ int main()
 		{
 			int res = map.checkDownCollision(player.getSprite());
 
-			if (res > -1) {
+			if (res > -1 && !player.isDied) {
 				player.getSprite()->setPosition(player.getSprite()->getPosition().x, res - 64);
 				player.canMoveDown = false;
 			}
@@ -94,6 +94,10 @@ int main()
 			int res = map.checkRightCollision(player.getSprite());
 			if (res > -1) {
 				player.getSprite()->setPosition(res - 32, player.getSprite()->getPosition().y);
+				player.canMoveRight = false;
+			}
+			else {
+				player.canMoveRight = true;
 			}
 		}
 
@@ -102,6 +106,10 @@ int main()
 			int res = map.checkLeftCollision(player.getSprite() , true);
 			if (res > -1) {
 				player.getSprite()->setPosition(res, player.getSprite()->getPosition().y);
+				player.canMoveLeft = false;
+			}
+			else {
+				player.canMoveLeft = true;
 			}
 		}
 
@@ -124,14 +132,24 @@ int main()
 
 		player.update(delta, isMoving);
 
-		player.applyGravity(delta);
+		if (!player.isDied) 
+		{
+			bool res = enemies.checkPlayerCollision(player.getSprite());
 
+			if (res) {
+				player.enemyKilled();
+			}
+		}
+
+		for (Enemy* enemy : enemies.enemies) {
+			if(!enemy->enemyDied) player.checkEnemyCollision(enemy->getSprite());
+		}
 		map.mapView(player.getSprite() , delta);
 		/*--------------------------------------------------------------------------*/
 
 		/*========================== Enemy Movements ==============================*/
 		enemies.update(&map , delta);
-		enemies.checkDeath(player.getSprite());
+		
 		/*--------------------------------------------------------------------------*/
 
 		/*========================== Drawing ==============================*/
