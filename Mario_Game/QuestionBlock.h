@@ -8,18 +8,17 @@ class QuestionBlock
 	sf::Sprite powerUp;
 	sf::Clock clock;
 	sf::Clock cpAnimation; // c-> coin , p-> power for cp animations
-	//sf::Clock cpHitClock ; // for cp come out from block
 
-	int prevX;
-	bool forward;
+	int prevCol;
+	bool colRight;
 	bool containPower;
 	bool bounce;
 	bool isBouncing;
-	int cpX;
+	int cpCol;
+	int prevFloor;
+	bool Hitten;
 
-	bool hadHitted;
-
-	bool pCameOut;
+	bool cpCameOut;
 	int powerSpeedX;
 	int powerSpeedY;
 
@@ -30,11 +29,11 @@ class QuestionBlock
 
 
 public:
-	QuestionBlock(sf::Texture&, float x, float y, bool);
-	int checkRightCollision(sf::Sprite*);
-	int checkLeftCollision(sf::Sprite*);
-	int checkDownCollision(sf::Sprite*);
-	int checkUpCollision(sf::Sprite* , bool);
+	QuestionBlock(sf::Texture&, float x, float y, bool containPower);
+	int checkRightCollision(sf::Sprite* sprite, bool isBig);
+	int checkLeftCollision(sf::Sprite* sprite, bool isBig);
+	int checkDownCollision(sf::Sprite* sprite, bool isBig);
+	int checkUpCollision(sf::Sprite* sprite, bool isBig);
 	bool checkPowerUp(sf::Sprite*);
 	void draw(sf::RenderWindow* window, float, Map*);
 	void collide(sf::Sprite&);

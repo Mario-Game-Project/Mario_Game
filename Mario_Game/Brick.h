@@ -15,12 +15,15 @@ class Brick
 	bool bounce;
 	bool breakIt;
 
+	void breakBounce();
+
 public:
+	bool isBig;
 	Brick(sf::Texture& texture, float x, float y);
-	int checkRightCollision(sf::Sprite*);
-	int checkLeftCollision(sf::Sprite*);
-	int checkDownCollision(sf::Sprite*);
-	int checkUpCollision(sf::Sprite*, bool);
+	int checkRightCollision(sf::Sprite* sprite , bool isBig);
+	int checkLeftCollision(sf::Sprite* sprite, bool isBig);
+	int checkDownCollision(sf::Sprite* sprite, bool isBig);
+	int checkUpCollision(sf::Sprite* sprite, bool isBig);
 	//void breakIt();	
 	void draw(sf::RenderWindow* window);
 };

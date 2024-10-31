@@ -51,6 +51,12 @@
     <ClCompile Include="Enemies.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Castle.cpp">
+      <Filter>Source Files\Map Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Flag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -78,6 +84,12 @@
       <Filter>Header Files\Map Components</Filter>
     </ClInclude>
     <ClInclude Include="Enemies.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Castle.h">
+      <Filter>Header Files\Map Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Flag.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

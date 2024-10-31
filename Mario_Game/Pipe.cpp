@@ -27,22 +27,19 @@ int Pipe::checkRightCollision(sf::Sprite* sprite)
 {
 	float spriteTop = sprite->getGlobalBounds().top;
 	float spriteBottom = spriteTop + sprite->getGlobalBounds().height;
-	float spriteLeft = sprite->getGlobalBounds().left + 10; // `+10` to fix player sprite's empty spaces in side creating bug
-	float spriteRight = spriteLeft + sprite->getGlobalBounds().width - 20;
+	float spriteLeft = sprite->getGlobalBounds().left;
+	float spriteRight = spriteLeft + sprite->getGlobalBounds().width;
 
 	for (sf::Sprite tile : tiles) {
-		float tileTop = tile.getGlobalBounds().top + 4;
-		float tileBottom = tileTop + tile.getGlobalBounds().height;
-		float tileLeft = tile.getGlobalBounds().left + 4;
-		float tileRight = tileLeft + tile.getGlobalBounds().width - 8;
+		float tileTop = tile.getGlobalBounds().top ;
+		float tileBottom = tileTop + tile.getGlobalBounds().height - 4;
+		float tileLeft = tile.getGlobalBounds().left + 8; // `+8` to fix player sprite's empty spaces in side creating bug
+		float tileRight = tileLeft + tile.getGlobalBounds().width - 16;
 
 		if (tile.getGlobalBounds().intersects(sprite->getGlobalBounds())
 			&& tileLeft > spriteLeft
-			&& tileRight > spriteRight
-			&& tileTop < spriteBottom
-			&& tileBottom > spriteTop) {
-			return tileLeft - 4;
-		}
+			&& tileLeft <= spriteRight
+			&& tileTop < spriteBottom) return tileLeft;
 	}
 	return -1;
 }
@@ -51,25 +48,21 @@ int Pipe::checkLeftCollision(sf::Sprite* sprite)
 {
 	float spriteTop = sprite->getGlobalBounds().top;
 	float spriteBottom = spriteTop + sprite->getGlobalBounds().height;
-	float spriteLeft = sprite->getGlobalBounds().left + 10;// `+10` to fix player sprite's empty spaces in side creating bug
-	float spriteRight = spriteLeft + sprite->getGlobalBounds().width - 20;
-
+	float spriteLeft = sprite->getGlobalBounds().left;
+	float spriteRight = spriteLeft + sprite->getGlobalBounds().width;
 
 	for (sf::Sprite tile : tiles) {
 
-		float tileTop = tile.getGlobalBounds().top + 4;
-		float tileBottom = tileTop + tile.getGlobalBounds().height - 8;
-		float tileLeft = tile.getGlobalBounds().left + 4;
-		float tileRight = tileLeft + tile.getGlobalBounds().width - 8;
+		float tileTop = tile.getGlobalBounds().top; 
+		float tileBottom = tileTop + tile.getGlobalBounds().height - 4;
+		float tileLeft = tile.getGlobalBounds().left + 8; // `+8` to fix player sprite's empty spaces in side creating bug
+		float tileRight = tileLeft + tile.getGlobalBounds().width - 16;
 
 		if (tile.getGlobalBounds().intersects(sprite->getGlobalBounds())
-			&& tileLeft < spriteLeft
 			&& tileRight < spriteRight
+			&& tileRight >= spriteLeft
 			&& tileTop < spriteBottom
-			&& tileBottom > spriteTop
-			) {
-			return tileRight + 4;
-		}
+			) return tileRight;
 	}
 	return -1;
 }
@@ -78,30 +71,27 @@ int Pipe::checkDownCollision(sf::Sprite* sprite)
 {
 	float spriteTop = sprite->getGlobalBounds().top;
 	float spriteBottom = spriteTop + sprite->getGlobalBounds().height;
-	float spriteLeft = sprite->getGlobalBounds().left + 10; // `+10` to fix player sprite's empty spaces in side creating bug
-	float spriteRight = spriteLeft + sprite->getGlobalBounds().width - 20;
+	float spriteLeft = sprite->getGlobalBounds().left;
+	float spriteRight = spriteLeft + sprite->getGlobalBounds().width;
 
 	sf::Sprite tile = tiles.at(tiles.size() - 1);
 
-	float tileTop = tile.getGlobalBounds().top + 2;
+	float tileTop = tile.getGlobalBounds().top;
 	float tileBottom = tileTop + tile.getGlobalBounds().height;
-	float tileLeft = tile.getGlobalBounds().left;
-	float tileRight = tileLeft + tile.getGlobalBounds().width;
+	float tileLeft = tile.getGlobalBounds().left + 9; // `+8` to fix player sprite's empty spaces in side creating bug
+	float tileRight = tileLeft + tile.getGlobalBounds().width - 18;
 
 	if (tileRight > spriteLeft
 		&& tileLeft < spriteRight
 		&& tileTop <= spriteBottom
 		&& tileTop > spriteTop
 		&& tileBottom > spriteBottom
-		) {
-		return tileTop;
-	}
+		) return tileTop;
+	
 	return -1;
 }
 
 void Pipe::draw(sf::RenderWindow* window)
 {
-	for (sf::Sprite pipe : tiles) {
-		window->draw(pipe);
-	}
+	for (sf::Sprite pipe : tiles) window->draw(pipe);
 }

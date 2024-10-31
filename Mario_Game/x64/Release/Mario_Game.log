@@ -1,105 +1,25 @@
 ﻿  Brick.cpp
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Brick.cpp(47,10): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Brick.cpp(70,10): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Brick.cpp(93,10): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Brick.cpp(109,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Brick.cpp(110,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Brick.cpp(126,10): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  Enemies.cpp
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemies.cpp(38,49): warning C4244: 'argument': conversion from 'const T' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemies.cpp(38,49): warning C4244:         with
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemies.cpp(38,49): warning C4244:         [
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemies.cpp(38,49): warning C4244:             T=float
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemies.cpp(38,49): warning C4244:         ]
-  Enemy.cpp
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(9,39): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(9,39): warning C4244:         with
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(9,39): warning C4244:         [
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(9,39): warning C4244:             T=float
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(9,39): warning C4244:         ]
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(9,36): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(9,36): warning C4244:         with
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(9,36): warning C4244:         [
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(9,36): warning C4244:             T=float
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(9,36): warning C4244:         ]
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(18,38): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(18,38): warning C4244:         with
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(18,38): warning C4244:         [
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(18,38): warning C4244:             T=float
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(18,38): warning C4244:         ]
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(18,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(18,35): warning C4244:         with
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(18,35): warning C4244:         [
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(18,35): warning C4244:             T=float
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(18,35): warning C4244:         ]
-  Floor.cpp
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Floor.cpp(13,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Floor.cpp(13,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Floor.cpp(20,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Floor.cpp(20,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Floor.cpp(43,11): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Floor.cpp(67,10): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Floor.cpp(91,10): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  main.cpp
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\main.cpp(37,20): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\main.cpp(37,10): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\main.cpp(83,78): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\main.cpp(96,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\main.cpp(104,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\main.cpp(113,74): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Map.cpp
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(283,57): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(283,49): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(283,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(360,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(360,17): warning C4244:         with
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(360,17): warning C4244:         [
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(360,17): warning C4244:             T=float
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(360,17): warning C4244:         ]
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(481,91): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(481,44): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(482,12): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(482,12): warning C4244:         with
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(482,12): warning C4244:         [
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(482,12): warning C4244:             T=float
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(482,12): warning C4244:         ]
-  Pipe.cpp
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Pipe.cpp(44,20): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Pipe.cpp(71,21): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Pipe.cpp(97,10): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  Player.cpp
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(27,50): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(33,50): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(76,33): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(77,33): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(89,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(97,21): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(111,38): warning C4244: '=': conversion from 'const T' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(111,38): warning C4244:         with
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(111,38): warning C4244:         [
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(111,38): warning C4244:             T=float
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(111,38): warning C4244:         ]
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(112,38): warning C4244: '=': conversion from 'const T' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(112,38): warning C4244:         with
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(112,38): warning C4244:         [
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(112,38): warning C4244:             T=float
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(112,38): warning C4244:         ]
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(113,24): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(113,21): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Brick.cpp(122,13): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Brick.cpp(149,13): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Brick.cpp(167,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Brick.cpp(168,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Brick.cpp(176,10): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Brick.cpp(211,10): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
   QuestionBlock.cpp
 C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\QuestionBlock.cpp(52,57): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\QuestionBlock.cpp(139,10): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\QuestionBlock.cpp(162,10): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\QuestionBlock.cpp(187,10): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\QuestionBlock.cpp(203,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\QuestionBlock.cpp(204,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\QuestionBlock.cpp(219,10): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  Stone.cpp
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Stone.cpp(36,11): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Stone.cpp(60,10): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Stone.cpp(84,10): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\QuestionBlock.cpp(143,12): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\QuestionBlock.cpp(170,12): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\QuestionBlock.cpp(197,12): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\QuestionBlock.cpp(228,10): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
   Generating code
-  Previous IPDB not found, fall back to full compilation.
-  All 515 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  12 of 514 functions ( 2.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    2 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  Mario_Game.vcxproj -> C:\Users\HP\OneDrive\Code\Mario Game\x64\Release\Mario_Game.exe
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(1151,5): error MSB6003: The specified task executable "link.exe" could not be run. System.IO.IOException: The process cannot access the file 'x64\Release\Mario_Game.tlog\link-rc.read.1.tlog' because it is being used by another process.
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(1151,5): error MSB6003:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(1151,5): error MSB6003:    at System.IO.FileInfo.Delete()
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(1151,5): error MSB6003:    at Microsoft.Build.CPPTasks.TrackedVCToolTask.DeleteEmptyFile(ITaskItem[] filesToDelete)
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(1151,5): error MSB6003:    at Microsoft.Build.CPPTasks.TrackedVCToolTask.PostExecuteTool(Int32 exitCode)
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(1151,5): error MSB6003:    at Microsoft.Build.CPPTasks.TrackedVCToolTask.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands)
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(1151,5): error MSB6003:    at Microsoft.Build.Utilities.ToolTask.Execute()

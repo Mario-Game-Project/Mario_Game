@@ -1,134 +1,7 @@
 #include "Brick.h"
 #include <iostream>
 
-Brick::Brick(sf::Texture& texture, float x, float y) :
-	isBouncing(false),
-	bounce(false),
-	breakIt(false)
-{
-	tile.setSize(sf::Vector2f(32, 32));
-	tile.setPosition(x * 32, y * 32);
-
-	topLeft.setTexture(texture);
-	topLeft.setTextureRect(sf::IntRect(16 * 32, 6 * 32, 1 * 16, 1 * 16));
-	topLeft.setPosition(x * 32, y * 32);
-
-	topRight.setTexture(texture);
-	topRight.setTextureRect(sf::IntRect(16 * 32 + 16, 6 * 32, 1 * 16, 1 * 16));
-	topRight.setPosition(x * 32 + 16, y * 32);
-
-	bottomLeft.setTexture(texture);
-	bottomLeft.setTextureRect(sf::IntRect(16 * 32, 6 * 32 + 16, 1 * 16, 1 * 16));
-	bottomLeft.setPosition(x * 32, y * 32 + 16);
-
-	bottomRight.setTexture(texture);
-	bottomRight.setTextureRect(sf::IntRect(16 * 32 + 16, 6 * 32 + 16, 1 * 16, 1 * 16));
-	bottomRight.setPosition(x * 32 + 16, y * 32 + 16);
-
-}
-
-int Brick::checkRightCollision(sf::Sprite* sprite)
-{
-	float spriteTop = sprite->getGlobalBounds().top;
-	float spriteBottom = spriteTop + sprite->getGlobalBounds().height;
-	float spriteLeft = sprite->getGlobalBounds().left + 10;
-	float spriteRight = spriteLeft + sprite->getGlobalBounds().width - 20;
-
-	float tileTop = tile.getGlobalBounds().top + 5;
-	float tileBottom = tileTop + tile.getGlobalBounds().height - 10;
-	float tileLeft = tile.getGlobalBounds().left;
-	float tileRight = tileLeft + tile.getGlobalBounds().width;
-
-	if (tile.getGlobalBounds().intersects(sprite->getGlobalBounds())
-		&& tileLeft > spriteLeft
-		&& tileRight > spriteRight
-		&& tileTop < spriteBottom
-		&& tileBottom > spriteTop) {
-		return tileLeft;
-	}
-	return -1;
-}
-
-int Brick::checkLeftCollision(sf::Sprite* sprite)
-{
-	float spriteTop = sprite->getGlobalBounds().top;
-	float spriteBottom = spriteTop + sprite->getGlobalBounds().height ;
-	float spriteLeft = sprite->getGlobalBounds().left + 10;
-	float spriteRight = spriteLeft + sprite->getGlobalBounds().width - 20;
-
-	float tileTop = tile.getGlobalBounds().top + 5;
-	float tileBottom = tileTop + tile.getGlobalBounds().height - 10;
-	float tileLeft = tile.getGlobalBounds().left;
-	float tileRight = tileLeft + tile.getGlobalBounds().width;
-
-	if (tile.getGlobalBounds().intersects(sprite->getGlobalBounds())
-		&& tileLeft < spriteLeft
-		&& tileRight < spriteRight
-		&& tileTop < spriteBottom
-		&& tileBottom > spriteTop
-		) {
-		return tileRight;
-	}
-
-	return -1;
-}
-
-int Brick::checkDownCollision(sf::Sprite* sprite)
-{
-	float spriteTop = sprite->getGlobalBounds().top;
-	float spriteBottom = spriteTop + sprite->getGlobalBounds().height;
-	float spriteLeft = sprite->getGlobalBounds().left + 10;
-	float spriteRight = spriteLeft + sprite->getGlobalBounds().width - 20;
-
-	float tileTop = tile.getGlobalBounds().top + 2;
-	float tileBottom = tileTop + tile.getGlobalBounds().height;
-	float tileLeft = tile.getGlobalBounds().left;
-	float tileRight = tileLeft + tile.getGlobalBounds().width;
-	if (tileRight > spriteLeft
-		&& tileLeft < spriteRight
-		&& tileTop <= spriteBottom
-		&& tileTop > spriteTop
-		&& tileBottom > spriteBottom
-		) {
-		return tileTop;
-	}
-	return -1;
-}
-
-int Brick::checkUpCollision(sf::Sprite* sprite, bool isBig)
-{
-	int topDec = 8;
-	if (!isBig) {
-		topDec *= 3;
-	}
-	float spriteTop = sprite->getGlobalBounds().top + topDec;
-	float spriteBottom = spriteTop + sprite->getGlobalBounds().height - topDec - 8;
-	float spriteLeft = sprite->getGlobalBounds().left + 10;
-	float spriteRight = spriteLeft + sprite->getGlobalBounds().width - 20;
-
-	float tileTop = tile.getGlobalBounds().top + tile.getGlobalBounds().height / 2.0;
-	float tileBottom = tileTop + tile.getGlobalBounds().height / 2.0;
-	float tileLeft = tile.getGlobalBounds().left - 5;
-	float tileRight = tileLeft + tile.getGlobalBounds().width + 10;
-
-	if (tile.getGlobalBounds().intersects(sprite->getGlobalBounds())
-		&& tileBottom > spriteTop
-		&& tileTop <= spriteBottom
-		&& tileRight > spriteLeft
-		&& tileLeft < spriteRight
-		) {
-		if (isBig) {
-			breakIt = true;
-		}
-		else {
-			bounce = true;
-		}
-		return tileBottom;
-	}
-	return -1;
-}
-
-void Brick::draw(sf::RenderWindow* window)
+void Brick::breakBounce()
 {
 	if (bounce && clock.getElapsedTime().asMilliseconds() >= 100) {
 		if (!isBouncing) {
@@ -194,25 +67,152 @@ void Brick::draw(sf::RenderWindow* window)
 		bottomLeft.rotate(10);
 		bottomRight.rotate(10);
 
-
-		//if (!isBroken) {
-		//	//tile.move(-5, -5);
-		//	tile.setSize(sf::Vector2f(0, 0));
-		//	
-		//	topRight.move(5, -5);
-		//	bottomLeft.move(-5, 5);
-		//	bottomRight.move(5, 5);
-		//	isBroken = true;
-		//}
-		//else {
-		//	topLeft.move(0, 10);
-		//	topRight.move(0, 10);
-		//	bottomLeft.move(0, 10);
-		//	bottomRight.move(0, 10);
-		//}
-
 		clock.restart();
 	}
+}
+
+Brick::Brick(sf::Texture& texture, float x, float y) :
+	isBouncing(false),
+	bounce(false),
+	breakIt(false),
+	isBig(false)
+{
+	tile.setSize(sf::Vector2f(32, 32));
+	tile.setPosition(x * 32, y * 32);
+
+	topLeft.setTexture(texture);
+	topLeft.setTextureRect(sf::IntRect(16 * 32, 6 * 32, 1 * 16, 1 * 16));
+	topLeft.setPosition(x * 32, y * 32);
+
+	topRight.setTexture(texture);
+	topRight.setTextureRect(sf::IntRect(16 * 32 + 16, 6 * 32, 1 * 16, 1 * 16));
+	topRight.setPosition(x * 32 + 16, y * 32);
+
+	bottomLeft.setTexture(texture);
+	bottomLeft.setTextureRect(sf::IntRect(16 * 32, 6 * 32 + 16, 1 * 16, 1 * 16));
+	bottomLeft.setPosition(x * 32, y * 32 + 16);
+
+	bottomRight.setTexture(texture);
+	bottomRight.setTextureRect(sf::IntRect(16 * 32 + 16, 6 * 32 + 16, 1 * 16, 1 * 16));
+	bottomRight.setPosition(x * 32 + 16, y * 32 + 16);
+}
+
+int Brick::checkRightCollision(sf::Sprite* sprite , bool isBig)
+{
+	int topDec = 8;
+	if (!isBig) {
+		topDec *= 3;
+	}
+	float spriteTop = sprite->getGlobalBounds().top + topDec;
+	float spriteBottom = spriteTop + sprite->getGlobalBounds().height - topDec;
+	float spriteLeft = sprite->getGlobalBounds().left;
+	float spriteRight = spriteLeft + sprite->getGlobalBounds().width;
+
+	float tileTop = tile.getGlobalBounds().top ;
+	float tileBottom = tileTop + tile.getGlobalBounds().height -8;
+	float tileLeft = tile.getGlobalBounds().left + 3; // `+3` to fix player sprite's empty spaces in side creating bug
+	float tileRight = tileLeft + tile.getGlobalBounds().width - 6;
+
+	if (tile.getGlobalBounds().intersects(sprite->getGlobalBounds())
+		&& tileLeft > spriteLeft
+		&& tileLeft < spriteRight
+		&& tileTop < spriteBottom
+		&& tileBottom > spriteTop
+		)  return tileLeft;
+
+	return -1;
+}
+
+int Brick::checkLeftCollision(sf::Sprite* sprite , bool isBig)
+{
+	int topDec = 8;
+	if (!isBig) {
+		topDec *= 3;
+	}
+	float spriteTop = sprite->getGlobalBounds().top + topDec;
+	float spriteBottom = spriteTop + sprite->getGlobalBounds().height - topDec;
+	float spriteLeft = sprite->getGlobalBounds().left;
+	float spriteRight = spriteLeft + sprite->getGlobalBounds().width;
+
+	float tileTop = tile.getGlobalBounds().top;
+	float tileBottom = tileTop + tile.getGlobalBounds().height -8;
+	float tileLeft = tile.getGlobalBounds().left + 3; // `+3` to fix player sprite's empty spaces in side creating bug
+	float tileRight = tileLeft + tile.getGlobalBounds().width - 6;
+
+	if (tile.getGlobalBounds().intersects(sprite->getGlobalBounds())
+		&& tileRight < spriteRight
+		&& tileRight > spriteLeft
+		&& tileTop < spriteBottom
+		&& tileBottom > spriteTop
+		)  return tileRight;
+
+	return -1;
+}
+
+int Brick::checkDownCollision(sf::Sprite* sprite , bool isBig)
+{
+	int topDec = 8;
+	if (!isBig) {
+		topDec *= 3;
+	}
+	float spriteTop = sprite->getGlobalBounds().top + topDec;
+	float spriteBottom = spriteTop + sprite->getGlobalBounds().height - topDec;
+	float spriteLeft = sprite->getGlobalBounds().left;
+	float spriteRight = spriteLeft + sprite->getGlobalBounds().width;
+
+	float tileTop = tile.getGlobalBounds().top;
+	float tileBottom = tileTop + tile.getGlobalBounds().height;
+	float tileLeft = tile.getGlobalBounds().left + 6; // `+6` for right - left collision bug
+	float tileRight = tileLeft + tile.getGlobalBounds().width - 12;
+
+	if (tileRight > spriteLeft
+		&& tileLeft < spriteRight
+		&& tileTop <= spriteBottom
+		&& tileTop > spriteTop
+		&& tileBottom > spriteBottom
+		)  return tileTop;
+	
+	return -1;
+}
+
+int Brick::checkUpCollision(sf::Sprite* sprite, bool isBig)
+{
+	int topDec = 8;
+	if (!isBig) {
+		topDec *= 3;
+	}
+	float spriteTop = sprite->getGlobalBounds().top + topDec;
+	float spriteBottom = spriteTop + sprite->getGlobalBounds().height - topDec;
+	float spriteLeft = sprite->getGlobalBounds().left;
+	float spriteRight = spriteLeft + sprite->getGlobalBounds().width;
+
+	float tileTop = tile.getGlobalBounds().top;
+	float tileBottom = tileTop + tile.getGlobalBounds().height;
+	float tileLeft = tile.getGlobalBounds().left + 6;   // `+6` for right - left collision bug
+	float tileRight = tileLeft + tile.getGlobalBounds().width - 12;
+	
+
+
+	if (tileRight > spriteLeft
+		&& tileLeft < spriteRight
+		&& tileBottom >= spriteTop
+		&& tileBottom < spriteBottom
+		&& tileTop < spriteTop
+		) {
+		if (isBig) {
+			breakIt = true;
+		}
+		else {
+			bounce = true;
+		}
+		return tileBottom;
+	}
+	return -1;
+}
+
+void Brick::draw(sf::RenderWindow* window)
+{
+	breakBounce();
 
 	window->draw(tile);
 	window->draw(topLeft);

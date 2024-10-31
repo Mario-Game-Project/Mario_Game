@@ -103,9 +103,10 @@ void Player::update(float delta, bool isMoving)
 		if (InvisiblityClock.getElapsedTime().asMilliseconds() > 50 ) {
 			InvisiblityClock.restart();
 			alpha = alpha > 0 ? 0 : 128;
-			sprite.setColor(sf::Color(255, 255, 255, alpha));
 		}
-		return; // do not do any type of movement when freezed ( usually when upgraded )
+		if (!freeze) alpha = 128;
+		sprite.setColor(sf::Color(255, 255, 255, alpha));
+		return; // do not do any type of movement when freezed ( usually when upgraded/dowgraded )
 	}
 
 	/*============================= Invisibility ==============================*/

@@ -8,6 +8,15 @@ Floor::Floor(sf::Texture& texture, int posTilesX, int posTilesY, int tilesN)
 	sprite.setTexture(texture);
 	int col = 0; // for spritesheet columns indexing
 
+	posTilesX++; // first tile will flip tus take a position 1 tile to the right , so to adjust it we add 1
+
+	sprite.setTextureRect(sf::IntRect(19 * 32, 0, 32, 32 * 3));
+	sprite.setPosition(posTilesX * 32, posTilesY * 32);
+	sprite.scale(-1, 1);
+	tiles.push_back(sprite);
+	tilesN--;
+	sprite.scale(-1, 1);
+
 	while (tilesN > 1) {
 		sprite.setTextureRect(sf::IntRect(col * 32, 0, 32, 32 * 3));
 		sprite.setPosition(posTilesX * 32, posTilesY * 32);

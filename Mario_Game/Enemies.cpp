@@ -32,7 +32,7 @@ void Enemies::update(Map* map, float delta)
 {
 	for (Enemy* enemy : enemies) {
 		{
-			int res = map->checkDownCollision(enemy->getSprite());
+			int res = map->checkDownCollision(enemy->getSprite() , false);
 			if (res > -1 && !enemy->enemyDied) {
 				enemy->isGrounded = true;
 				enemy->getSprite()->setPosition(enemy->getSprite()->getPosition().x, res - 64);
@@ -42,13 +42,13 @@ void Enemies::update(Map* map, float delta)
 			}
 		}
 		{
-			int res = map->checkLeftCollision(enemy->getSprite(), false);
+			int res = map->checkLeftCollision(enemy->getSprite(), false , false);
 			if (res > -1) {
 				enemy->enemyMovingRight = true;
 			}
 		}
 		{
-			int res = map->checkRightCollision(enemy->getSprite());
+			int res = map->checkRightCollision(enemy->getSprite() , false);
 			if (res > -1) {
 				enemy->enemyMovingRight = false;
 			}

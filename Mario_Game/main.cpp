@@ -7,7 +7,8 @@
 
 int main()
 {
-	/* ======================= Creating Window ====================== */
+	/* ==================================== Creating Window ==================================== */
+
 	int winHeight = 32 * 25;
 	int winWidth = int(16.0 / 9.0 * winHeight);
 	sf::RenderWindow window(sf::VideoMode(winWidth, winHeight), "Mario Game", sf::Style::Close);
@@ -20,30 +21,43 @@ int main()
 
 	// enabling vSync
 	window.setVerticalSyncEnabled(true);
-	/*------------------------------------------------------------------*/
 
-	/*========================== Characters ==========================*/
+	// defining clock to measure delta time
+	sf::Clock deltaClock;
+
+	/* ----------------------------------------------------------------------------------------- */
+
+
+	/* ====================================== Characters ======================================= */
+
 	sf::Texture spriteSheet;
 	spriteSheet.loadFromFile("./Assets/Characters/SpriteSheet-32x64.png");
 
+	// Player :
 	Player player(spriteSheet, 21 * 32);
 
-	sf::Clock clock;
-	/*-----------------------------------------------------------------*/
-
+	// Enemies :
 	Enemies enemies(&spriteSheet);
-	//========================== Map ==============================
+
+	bool isSpacePressed = false;
+
+	/* ----------------------------------------------------------------------------------------- */
+
+
+	/* ========================================== Map ========================================== */
 
 	Map map(winWidth, winHeight);
 
-	/*-----------------------------------------------------------------*/
+	/* ----------------------------------------------------------------------------------------- */
 
-	/*========================== Game Loop =================================*/
+
+	/* ======================================= Game Loop ======================================= */
+
 	while (window.isOpen())
 	{
-		float delta = clock.restart().asSeconds();
+		float delta = deltaClock.restart().asSeconds();
 
-		/*----------------------- Events loop ----------------------------------*/
+		/* ----------------------------------- Window Events ----------------------------------- */
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -51,115 +65,115 @@ int main()
 				window.close();
 		}
 
-		/*========================== Player Movements ==============================*/
+		/* ---------------------------------- Player Movements --------------------------------- */
 		bool isMoving = false;
+
+		// Right Movement 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		{
-			player.moveRight(delta); // Right
+			player.moveRight(delta);
 			isMoving = true;
 		}
 
+		// Left Movement
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
-			player.moveLeft(delta); // Left
+			player.moveLeft(delta);
 
 			isMoving = true;
 		}
 
+		// Jump
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-			player.jump();
+			if (!isSpacePressed) player.jump(); // only one jump per spacebar hold
 
 			isMoving = true;
+			isSpacePressed = true;
 		}
+		else isSpacePressed = false;
 
-		/*--------------------------------------------------------------------------*/
+		/* --------------------------------- Player Collisions --------------------------------- */
 
-		/*========================== Player Collisions ==============================*/
-		// Down collision
+
+		// Down collision :
 		{
-			int res = map.checkDownCollision(player.getSprite());
+			int res = map.checkDownCollision(player.getSprite(), player.isBig);
 
 			if (res > -1 && !player.isDied) {
 				player.getSprite()->setPosition(player.getSprite()->getPosition().x, res - 64);
 				player.canMoveDown = false;
 			}
-			else {
-				player.canMoveDown = true;
-				
-			}
-		}
+			else player.canMoveDown = true;
 
-		// Right collision
+		}
+		// Right collision :
 		{
-			int res = map.checkRightCollision(player.getSprite());
+			int res = map.checkRightCollision(player.getSprite(), player.isBig);
+
 			if (res > -1) {
 				player.getSprite()->setPosition(res - 32, player.getSprite()->getPosition().y);
 				player.canMoveRight = false;
 			}
-			else {
-				player.canMoveRight = true;
-			}
+			else player.canMoveRight = true;
 		}
 
-		// Left collision
+		// Left collision :
 		{
-			int res = map.checkLeftCollision(player.getSprite() , true);
+			int res = map.checkLeftCollision(player.getSprite(), player.isBig, true);
+
 			if (res > -1) {
 				player.getSprite()->setPosition(res, player.getSprite()->getPosition().y);
 				player.canMoveLeft = false;
 			}
-			else {
-				player.canMoveLeft = true;
-			}
+			else player.canMoveLeft = true;
 		}
-
 
 		//Up Collision :
 		{
 			int res = map.checkUpCollision(player.getSprite(), player.isBig);
+
 			if (res > -1) {
+				res = player.isBig ? res - 8 : res - 24;
 				player.getSprite()->setPosition(player.getSprite()->getPosition().x, res);
 				player.canMoveUp = false;
 			}
-			else {
-				player.canMoveUp = true;
-			}
+			else player.canMoveUp = true;
 		}
 
-		if (map.checkPowerUp(player.getSprite())) {
-			player.Upgrade();
-		}
+		// Upgrade :
+		if (map.checkPowerUp(player.getSprite())) player.Upgrade();
 
+		// Death / Downgrade :
+		if (!player.isDied && enemies.checkPlayerCollision(player.getSprite())) player.enemyKilled();
+
+		// Update player position and sprite :
 		player.update(delta, isMoving);
 
-		if (!player.isDied) 
-		{
-			bool res = enemies.checkPlayerCollision(player.getSprite());
+		// Update view :
+		map.mapView(player.getSprite(), delta);
 
-			if (res) {
-				player.enemyKilled();
-			}
-		}
-
-		for (Enemy* enemy : enemies.enemies) {
-			if(!enemy->enemyDied) player.checkEnemyCollision(enemy->getSprite());
-		}
-		map.mapView(player.getSprite() , delta);
-		/*--------------------------------------------------------------------------*/
-
-		/*========================== Enemy Movements ==============================*/
-		enemies.update(&map , delta);
+		if(map.checkCastleDoor(player.getSprite())) std::cout << "Castle \n";
 		
-		/*--------------------------------------------------------------------------*/
+		int flag = map.checkEndFlag(player.getSprite());
+		if(flag > -1) std::cout << "Flag \n";
 
-		/*========================== Drawing ==============================*/
+		/* -------------------------------- Enemies Movements : -------------------------------- */
+		enemies.update(&map, delta);
+
+		for (Enemy* enemy : enemies.enemies)
+			if (!enemy->enemyDied) player.checkEnemyCollision(enemy->getSprite());
+
+		/* --------------------------------------- Draw ---------------------------------------- */
 		window.clear();
 
 		map.draw(&window, delta);
 		enemies.draw(&window);
 		player.draw(&window);
+
 		window.display();
 	}
+
+	/* ----------------------------------------------------------------------------------------- */
 
 	return 0;
 }

@@ -17,24 +17,22 @@ int Stone::checkDownCollision(sf::Sprite* sprite)
 {
 	float spriteTop = sprite->getGlobalBounds().top;
 	float spriteBottom = spriteTop + sprite->getGlobalBounds().height;
-	float spriteLeft = sprite->getGlobalBounds().left + 10;
-	float spriteRight = spriteLeft + sprite->getGlobalBounds().width - 20;
+	float spriteLeft = sprite->getGlobalBounds().left;
+	float spriteRight = spriteLeft + sprite->getGlobalBounds().width;
 
 	for (sf::Sprite tile : tiles) {
 
-		float tileTop = tile.getGlobalBounds().top + 2;
+		float tileTop = tile.getGlobalBounds().top;
 		float tileBottom = tileTop + tile.getGlobalBounds().height;
-		float tileLeft = tile.getGlobalBounds().left;
-		float tileRight = tileLeft + tile.getGlobalBounds().width;
+		float tileLeft = tile.getGlobalBounds().left + 6; // `+6` for right - left collision bug
+		float tileRight = tileLeft + tile.getGlobalBounds().width - 12;
 
 		if (tileRight > spriteLeft
 			&& tileLeft < spriteRight
 			&& tileTop <= spriteBottom
 			&& tileTop > spriteTop
 			&& tileBottom > spriteBottom
-			) {
-			return tileTop;
-		}
+			) return tileTop;
 	}
 	return -1;
 }
@@ -43,22 +41,19 @@ int Stone::checkRightCollision(sf::Sprite* sprite)
 {
 	float spriteTop = sprite->getGlobalBounds().top;
 	float spriteBottom = spriteTop + sprite->getGlobalBounds().height;
-	float spriteLeft = sprite->getGlobalBounds().left + 10;
-	float spriteRight = spriteLeft + sprite->getGlobalBounds().width - 20;
+	float spriteLeft = sprite->getGlobalBounds().left;
+	float spriteRight = spriteLeft + sprite->getGlobalBounds().width;
 
 	sf::Sprite tile = tiles.at(0);
-	float tileTop = tile.getGlobalBounds().top + 5;
-	float tileBottom = tileTop + tile.getGlobalBounds().height - 10;
-	float tileLeft = tile.getGlobalBounds().left;
-	float tileRight = tileLeft + tile.getGlobalBounds().width;
+	float tileTop = tile.getGlobalBounds().top;
+	float tileBottom = tileTop + tile.getGlobalBounds().height - 4;
+	float tileLeft = tile.getGlobalBounds().left + 3; // `+3` to fix player sprite's empty spaces in side creating bug
+	float tileRight = tileLeft + tile.getGlobalBounds().width - 6;
 
 	if (tile.getGlobalBounds().intersects(sprite->getGlobalBounds())
 		&& tileLeft > spriteLeft
-		&& tileRight > spriteRight
-		&& tileTop < spriteBottom
-		&& tileBottom > spriteTop) {
-		return tileLeft;
-	}
+		&& tileLeft <= spriteRight
+		&& tileTop < spriteBottom) return tileLeft;
 	return -1;
 }
 
@@ -66,23 +61,20 @@ int Stone::checkLeftCollision(sf::Sprite* sprite)
 {
 	float spriteTop = sprite->getGlobalBounds().top;
 	float spriteBottom = spriteTop + sprite->getGlobalBounds().height;
-	float spriteLeft = sprite->getGlobalBounds().left + 10;
-	float spriteRight = spriteLeft + sprite->getGlobalBounds().width - 20;
+	float spriteLeft = sprite->getGlobalBounds().left;
+	float spriteRight = spriteLeft + sprite->getGlobalBounds().width;
 
 	sf::Sprite tile = tiles.at(tiles.size() - 1);
-	float tileTop = tile.getGlobalBounds().top + 5;
-	float tileBottom = tileTop + tile.getGlobalBounds().height - 10;
-	float tileLeft = tile.getGlobalBounds().left;
-	float tileRight = tileLeft + tile.getGlobalBounds().width;
+	float tileTop = tile.getGlobalBounds().top;
+	float tileBottom = tileTop + tile.getGlobalBounds().height - 4;
+	float tileLeft = tile.getGlobalBounds().left + 3; // `+4` to fix player sprite's empty spaces in side creating bug
+	float tileRight = tileLeft + tile.getGlobalBounds().width - 6;
 
 	if (tile.getGlobalBounds().intersects(sprite->getGlobalBounds())
-		&& tileLeft < spriteLeft
 		&& tileRight < spriteRight
+		&& tileRight >= spriteLeft
 		&& tileTop < spriteBottom
-		&& tileBottom > spriteTop
-		) {
-		return tileRight;
-	}
+		) return tileRight;
 
 	return -1;
 }

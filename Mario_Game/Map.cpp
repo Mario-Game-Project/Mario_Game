@@ -1,5 +1,6 @@
 #include "Map.h"
 #include <iostream>
+
 void Map::renderFloor()
 {
 	{
@@ -11,9 +12,10 @@ void Map::renderFloor()
 		floors.push_back(floor);
 	}
 	{
-		Floor* floor = new Floor(texture, 87, 22, 190 - 87);
+		Floor* floor = new Floor(texture, 87, 22, 200 - 87);
 		floors.push_back(floor);
 	}
+	mapEnd = 200;
 }
 
 void Map::renderPipes()
@@ -279,10 +281,17 @@ void Map::renderBricksBlocks()
 
 void Map::renderStones()
 {
-	for (int i = 0; i < 12; i++) {
-		Stone* stone = new Stone(texture, 154 + i, 22 - i, 13 - i);
+	int posX = mapEnd - 32;
+	for (int i = 0; i < 10; i++) {
+		Stone* stone = new Stone(texture, posX -10 + i, 22 - i, 11 - i);
 		stones.push_back(stone);
 	}
+}
+
+void Map::renderCastleFlag()
+{
+	castle = new Castle(texture, mapEnd-15, 23-10);
+	flag = new Flag(texture, mapEnd - 25, 22, 14);
 }
 
 Map::Map(float winWidth, float winHeight)
@@ -302,73 +311,65 @@ Map::Map(float winWidth, float winHeight)
 	}
 	else std::cout << "Failed to load background" << std::endl;
 
-	/*========================== Rendering Components : ==========================*/
+	// Rendering Components :
 
 	renderFloor();
 	renderPipes();
 	renderBricksBlocks();
 	renderStones();
+	renderCastleFlag();
 
-	/*========================== View : ==========================*/
-	view.setCenter(sf::Vector2f(winWidth / 2, winHeight / 2));
+	// Setting View :
+
+	view.setCenter(sf::Vector2f(winWidth / 2, (winHeight / 2) ));
 	view.setSize(sf::Vector2f(winWidth, winHeight));
+	view.zoom(1);
 }
 
-int Map::checkDownCollision(sf::Sprite* sprite)
+int Map::checkDownCollision(sf::Sprite* sprite , bool isBig)
 {
 	for (Floor* floor : floors) {
 		int res = floor->checkDownCollision(sprite);
-		if (res > -1) {
-			return res;
-		}
+		if (res > -1) return res;
 	}
 
 	for (Pipe* pipe : pipes) {
 		int res = pipe->checkDownCollision(sprite);
-		if (res > -1) {
-			return res;
-		}
+		if (res > -1) return res;
 	}
 
 	for (Brick* brick : bricks) {
-		int res = brick->checkDownCollision(sprite);
-		if (res > -1) {
-			return res;
-		}
+		int res = brick->checkDownCollision(sprite , isBig);
+		if (res > -1) return res;
 	}
 
 	for (QuestionBlock* block : blocks)
 	{
-		int res = block->checkDownCollision(sprite);
-		if (res > -1) {
-			return res;
-		}
+		int res = block->checkDownCollision(sprite , isBig);
+		if (res > -1) return res;
 	}
 
 	for (Stone* stone : stones) {
 		int res = stone->checkDownCollision(sprite);
-		if (res > -1) {
-			return res;
-		}
+		if (res > -1) return res;
 	}
 
 	return -1;
 }
 
-int Map::checkLeftCollision(sf::Sprite* sprite , bool isMario)
+int Map::checkLeftCollision(sf::Sprite* sprite , bool isBig , bool isMario)
 {
+	// fixing left border for mario only
 	int leftBorder = view.getCenter().x - view.getSize().x/2 + 10;
 	if ( isMario && sprite->getPosition().x < leftBorder ) return leftBorder ;
 
 	for (Pipe* pipe : pipes) {
 		int res = pipe->checkLeftCollision(sprite);
-		if (res > -1) {
-			return res;
-		}
+		if (res > -1) return res;
 	}
 
 	for (Brick* brick : bricks) {
-		int res = brick->checkLeftCollision(sprite);
+		int res = brick->checkLeftCollision(sprite , isBig);
 		if (res > -1) {
 			return res;
 		}
@@ -376,85 +377,78 @@ int Map::checkLeftCollision(sf::Sprite* sprite , bool isMario)
 
 	for (QuestionBlock* block : blocks)
 	{
-		int res = block->checkLeftCollision(sprite);
-		if (res > -1) {
-			return res;
-		}
+		int res = block->checkLeftCollision(sprite , isBig);
+		if (res > -1) return res;
 	}
 
 	for (Stone* stone : stones) {
 		int res = stone->checkLeftCollision(sprite);
-		if (res > -1) {
-			return res;
-		}
+		if (res > -1) return res;
 	}
 
 	return -1;
 }
 
-int Map::checkRightCollision(sf::Sprite* sprite)
+int Map::checkRightCollision(sf::Sprite* sprite , bool isBig)
 {
 	for (Pipe* pipe : pipes) {
 		int res = pipe->checkRightCollision(sprite);
-		if (res > -1) {
-			return res;
-		}
+		if (res > -1) return res;
 	}
 
 	for (Brick* brick : bricks) {
-		int res = brick->checkRightCollision(sprite);
-		if (res > -1) {
-			return res;
-		}
+		int res = brick->checkRightCollision(sprite , isBig);
+		if (res > -1) return res;
 	}
 
 	for (QuestionBlock* block : blocks)
 	{
-		int res = block->checkRightCollision(sprite);
-		if (res > -1) {
-			return res;
-		}
+		int res = block->checkRightCollision(sprite , isBig);
+		if (res > -1) return res;
 	}
 
 	for (Stone* stone : stones) {
 		int res = stone->checkRightCollision(sprite);
-		if (res > -1) {
-			return res;
-		}
+		if (res > -1) return res;
 	}
 
 	return -1;
 }
-
 int Map::checkUpCollision(sf::Sprite* sprite, bool isBig)
 {
 
 	for (Brick* brick : bricks) {
 		int res = brick->checkUpCollision(sprite, isBig);
-
-		if (res > -1) {
-			return res;
-		}
+		if (res > -1) return res;
 	}
 
 	for (QuestionBlock* block : blocks)
 	{
 		int res = block->checkUpCollision(sprite, isBig);
-		if (res > -1) {
-			return res;
-		}
+		if (res > -1) return res;
 	}
 
 	return -1;
 }
 
+int Map::checkEndFlag(sf::Sprite* sprite)
+{
+	
+	return flag->checkPoleCollision(sprite);
+}
+
+bool Map::checkCastleDoor(sf::Sprite* sprite)
+{
+	return castle->castleDoor(sprite);
+}
+
+
+
 bool Map::checkPowerUp(sf::Sprite* sprite)
 {
 	for (QuestionBlock* block : blocks) {
 		bool res = block->checkPowerUp(sprite);
-		if (res) {
-			return res;
-		}
+		if (res) return res;
 	}
 	return false;
 }
@@ -474,16 +468,20 @@ void Map::draw(sf::RenderWindow* window, float delta)
 	for (QuestionBlock* block : blocks) block->draw(window, delta, this);
 
 	for (Stone* stone : stones) stone->draw(window);
+
+	castle->draw(window);
+	flag->draw(window , delta);
 }
 
 void Map::mapView(sf::Sprite* sprite, float delta)
 {
 	background.setPosition(view.getCenter().x - (view.getSize().x / 2.0), view.getCenter().y - (view.getSize().y / 2.0));
+
+	if (view.getCenter().x + view.getSize().x / 2 >= mapEnd*32) return ;
+
 	int speed = sprite->getPosition().x - view.getCenter().x;
 
-	if (speed > 0) {
-		std::cout << speed << std::endl;
-		view.setCenter(view.getCenter().x + speed, view.getCenter().y);
-	}
+	if (speed > 0) view.setCenter(view.getCenter().x + speed, view.getCenter().y);
+	
 }
 
