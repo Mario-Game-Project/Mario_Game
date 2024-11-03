@@ -74,7 +74,7 @@ void Player::checkEnemyCollision(sf::Sprite* enemy)
 	if (enemy->getGlobalBounds().intersects(sprite.getGlobalBounds())
 		&& !isDied
 		&& !isInvisible
-		&&enemyLeft < spriteRight
+		&& enemyLeft < spriteRight
 		&& enemyRight > spriteLeft
 		&& enemyTop < spriteBottom
 		) {
@@ -94,13 +94,17 @@ void Player::checkEnemyCollision(sf::Sprite* enemy)
 }
 void Player::update(float delta, bool isMoving)
 {
+	/*This function is designed based on the fact that function will execute from top to bottom 
+	So we are writing the functionalities in reverse priority order wrt to speed and sprite control.
+	i.e. logic written in end is of most priority */
+
 	// Updating sprite's indices for animation :
 
 	/*================== Freeze ==================*/
 	if (freeze) {
 		freeze = spriteClock.getElapsedTime().asMilliseconds() > 1000 ? false : true;
 		isInvisible = true;
-		if (InvisiblityClock.getElapsedTime().asMilliseconds() > 50 ) {
+		if (InvisiblityClock.getElapsedTime().asMilliseconds() > 50) {
 			InvisiblityClock.restart();
 			alpha = alpha > 0 ? 0 : 128;
 		}
@@ -163,6 +167,24 @@ void Player::update(float delta, bool isMoving)
 	if (isDied) {
 		speedX = 0;
 		col = 4;
+	}
+
+	// ============================ Level Completed ================================
+
+	if (touchedFlag) {
+		if (canMoveDown) {
+			speedX = 0;
+			speedY = 100;
+			col = 5;
+		}
+		else moveRight(delta);
+	}
+
+	if (reachedCastle) {
+		speedX = 0;
+		speedY = 0;
+		alpha = alpha > 0 ? alpha -100 : 0;
+		sprite.setColor(sf::Color(255, 255, 255,alpha));
 	}
 
 	sprite.move(speedX * delta, speedY * delta);

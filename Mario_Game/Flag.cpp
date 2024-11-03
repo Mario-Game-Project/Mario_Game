@@ -38,7 +38,7 @@ int Flag::checkPoleCollision(sf::Sprite* sprite)
 		if (tile.getGlobalBounds().intersects(sprite->getGlobalBounds())) 
 		{
 			poleCollided = true;
-			return tile.getGlobalBounds().left;
+			return tile.getGlobalBounds().left + 8;
 		}
 	}
 	return -1;

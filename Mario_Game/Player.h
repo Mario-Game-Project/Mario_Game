@@ -26,6 +26,8 @@ public:
 	bool isDied;
 	bool isBig;
 	bool isInvisible;
+	bool touchedFlag;
+	bool reachedCastle;
 	Player(sf::Texture& texture, float floor);
 	sf::Sprite* getSprite();
 	void moveRight(float delta);
