@@ -21,6 +21,16 @@ sf::Sprite* Enemy::getSprite()
 	return &enemySprite;
 }
 
+void Enemy::checkEnemiesCollision(Enemy* enemy)
+{
+	if (this->enemySprite.getGlobalBounds().intersects(enemy->enemySprite.getGlobalBounds())) {
+		// Reverse direction for both enemies upon collision
+		this->enemyMovingRight = !this->enemyMovingRight;
+		enemy->enemyMovingRight = !enemy->enemyMovingRight;
+	}
+
+}
+
 void Enemy::checkCollisionWithPlayer(Sprite& playerSprite) {
 	// Get player and enemy bounds
 	FloatRect playerBounds = playerSprite.getGlobalBounds();
@@ -29,11 +39,13 @@ void Enemy::checkCollisionWithPlayer(Sprite& playerSprite) {
 	// Check if player is colliding with enemy from upside
 	if (playerBounds.intersects(enemyBounds) 
 		&& !enemyDied 
-		&& playerBounds.top + playerBounds.height <= enemyBounds.top + 36 // 32 + 4 for accuraccy as per spritesheet
-		&& playerBounds.left + playerBounds.width > enemyBounds.left + 5 // `+5` for accuraccy as per spritesheet
+		&& playerBounds.top + playerBounds.height >= enemyBounds.top + 32 // `+ 45` for accuraccy as per spritesheet
+		&& playerBounds.left + playerBounds.width > enemyBounds.left + 10 // `+5` for accuraccy as per spritesheet
 		&& playerBounds.left < enemyBounds.left + enemyBounds.width - 10) {
+
 		enemySpeed_Y = -300; // jump
 		enemyDied = true;
+		enemyMovingRight = !enemyMovingRight;
 	}
 }
 
@@ -67,6 +79,7 @@ void Enemy::update(float delta)
 	if (enemyDied) {
 		col = 5;
 		updateTexture = true;
+
 		// jumping speed in set in collisionWithPlayer function
 	}
 

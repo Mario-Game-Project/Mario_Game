@@ -1,5 +1,14 @@
 #include "Enemies.h"
 
+void Enemies::checkEnemiesCollision()
+{
+
+	for (int i = 0; i < enemies.size(); i++) {
+		for (int j = i+1; j < enemies.size(); j++) {
+			enemies.at(i)->checkEnemiesCollision(enemies.at(j));
+		}
+	}
+}
 Enemies::Enemies(sf::Texture* texture)
 {
 	{
@@ -19,11 +28,59 @@ Enemies::Enemies(sf::Texture* texture)
 		enemies.push_back(enemy);
 	}
 	{
+		Enemy* enemy = new Enemy(texture, 41 * 32, 21 * 32);
+		enemies.push_back(enemy);
+	}
+	{
 		Enemy* enemy = new Enemy(texture,47 * 32, 21 * 32);
 		enemies.push_back(enemy);
 	}
 	{
 		Enemy* enemy = new Enemy(texture,49 * 32, 21 * 32);
+		enemies.push_back(enemy);
+	}
+	{
+		Enemy* enemy = new Enemy(texture, 80 * 32, 14 * 32);
+		enemies.push_back(enemy);
+	}
+	{
+		Enemy* enemy = new Enemy(texture, 82 * 32, 14 * 32);
+		enemies.push_back(enemy);
+	}
+	{
+		Enemy* enemy = new Enemy(texture, 94 * 32, 21 * 32);
+		enemies.push_back(enemy);
+	}
+	{
+		Enemy* enemy = new Enemy(texture, 98 * 32, 21 * 32);
+		enemies.push_back(enemy);
+	}
+	{
+		Enemy* enemy = new Enemy(texture, 108 * 32, 21 * 32);
+		enemies.push_back(enemy);
+	}
+	{
+		Enemy* enemy = new Enemy(texture, 110 * 32, 21 * 32);
+		enemies.push_back(enemy);
+	}
+	{
+		Enemy* enemy = new Enemy(texture, 135 * 32, 21 * 32);
+		enemies.push_back(enemy);
+	}
+	{
+		Enemy* enemy = new Enemy(texture, 139 * 32, 21 * 32);
+		enemies.push_back(enemy);
+	}
+	{
+		Enemy* enemy = new Enemy(texture, 143 * 32, 21 * 32);
+		enemies.push_back(enemy);
+	}
+	{
+		Enemy* enemy = new Enemy(texture, 147 * 32, 21 * 32);
+		enemies.push_back(enemy);
+	}
+	{
+		Enemy* enemy = new Enemy(texture, 180 * 32, 21 * 32);
 		enemies.push_back(enemy);
 	}
 }
@@ -55,6 +112,7 @@ void Enemies::update(Map* map, float delta)
 		}
 		enemy->update(delta);
 	}
+	checkEnemiesCollision();
 }
 
 bool Enemies::checkPlayerCollision(sf::Sprite* sprite)

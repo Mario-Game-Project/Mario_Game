@@ -5,11 +5,11 @@
 #pragma once
 class Enemies
 {
+	void checkEnemiesCollision();
 public:
 	std::vector<Enemy*> enemies;
 	Enemies(sf::Texture* texture);
 	void update(Map* map , float delta);
-
 	bool checkPlayerCollision(sf::Sprite* sprite);
 	void draw(sf::RenderWindow* window);
 };

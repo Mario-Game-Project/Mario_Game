@@ -55,7 +55,7 @@
       <Filter>Source Files\Map Components</Filter>
     </ClCompile>
     <ClCompile Include="Flag.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Map Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -90,7 +90,7 @@
       <Filter>Header Files\Map Components</Filter>
     </ClInclude>
     <ClInclude Include="Flag.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Map Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
