@@ -1,1 +1,11 @@
 .vs
+.vscode
+*.tmp
+*.obj
+*.pdb
+*.ilk
+*.idb
+*.log
+*.tlog
+*.exe.recipe
+*.exe

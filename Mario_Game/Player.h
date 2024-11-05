@@ -23,7 +23,7 @@ public:
 	bool canMoveLeft;
 	bool canMoveUp;
 	bool canMoveDown;
-	bool isDied;
+	bool isDead;
 	bool isBig;
 	bool isInvisible;
 	bool touchedFlag;

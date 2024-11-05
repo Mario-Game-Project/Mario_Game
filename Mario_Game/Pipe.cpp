@@ -31,8 +31,8 @@ int Pipe::checkRightCollision(sf::Sprite* sprite)
 	float spriteRight = spriteLeft + sprite->getGlobalBounds().width;
 
 	for (sf::Sprite tile : tiles) {
-		float tileTop = tile.getGlobalBounds().top ;
-		float tileBottom = tileTop + tile.getGlobalBounds().height - 4;
+		float tileTop = tile.getGlobalBounds().top;
+		float tileBottom = tileTop + tile.getGlobalBounds().height;
 		float tileLeft = tile.getGlobalBounds().left + 8; // `+8` to fix player sprite's empty spaces in side creating bug
 		float tileRight = tileLeft + tile.getGlobalBounds().width - 16;
 
@@ -54,7 +54,7 @@ int Pipe::checkLeftCollision(sf::Sprite* sprite)
 	for (sf::Sprite tile : tiles) {
 
 		float tileTop = tile.getGlobalBounds().top; 
-		float tileBottom = tileTop + tile.getGlobalBounds().height - 4;
+		float tileBottom = tileTop + tile.getGlobalBounds().height;
 		float tileLeft = tile.getGlobalBounds().left + 8; // `+8` to fix player sprite's empty spaces in side creating bug
 		float tileRight = tileLeft + tile.getGlobalBounds().width - 16;
 
@@ -89,8 +89,8 @@ int Pipe::checkDownCollision(sf::Sprite* sprite)
 
 	float tileTop = tile.getGlobalBounds().top;
 	float tileBottom = tileTop + tile.getGlobalBounds().height;
-	float tileLeft = tile.getGlobalBounds().left + 9; // `+8` to fix player sprite's empty spaces in side creating bug
-	float tileRight = tileLeft + tile.getGlobalBounds().width - 18;
+	float tileLeft = tile.getGlobalBounds().left + 10; // `+8` to fix player sprite's empty spaces in side creating bug
+	float tileRight = tileLeft + tile.getGlobalBounds().width - 20;
 
 	if (tileRight > spriteLeft
 		&& tileLeft < spriteRight

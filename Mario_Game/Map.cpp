@@ -574,6 +574,11 @@ bool Map::checkPowerUp(sf::Sprite* sprite)
 	return false;
 }
 
+sf::Vector2f Map::getViewCenter()
+{
+	return view.getCenter();
+}
+
 void Map::draw(sf::RenderWindow* window, float delta)
 {
 	window->draw(background);

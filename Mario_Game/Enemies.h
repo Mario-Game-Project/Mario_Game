@@ -5,8 +5,6 @@
 #pragma once
 class Enemies
 {
-	void checkEnemiesCollision();
-
 public:
 	int winRightBorder;
 	int winLeftBorder;

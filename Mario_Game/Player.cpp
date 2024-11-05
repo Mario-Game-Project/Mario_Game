@@ -16,7 +16,7 @@ Player::Player(sf::Texture& texture, float floor) :
 	canMoveDown(true),
 	canMoveUp(true),
 	isBig(false),
-	isDied(false),
+	isDead(false),
 	isInvisible(false),
 	freeze(false),
 	alpha(255)
@@ -72,7 +72,7 @@ void Player::checkEnemyCollision(sf::Sprite* enemy)
 	// TODO : FIX FOR EXTRA SPACES IN BOTH SPTIRES 
 
 	if (enemy->getGlobalBounds().intersects(sprite.getGlobalBounds())
-		&& !isDied
+		&& !isDead
 		&& !isInvisible
 		&& enemyLeft < spriteRight
 		&& enemyRight > spriteLeft
@@ -89,7 +89,7 @@ void Player::checkEnemyCollision(sf::Sprite* enemy)
 		}
 		else {
 			col = 4;
-			isDied = true;
+			isDead = true;
 			speedY = -300;
 		}
 	}
@@ -166,7 +166,7 @@ void Player::update(float delta, bool isMoving)
 	else speedY = 0;
 
 	/* ============================ Death ================================ */
-	if (isDied) {
+	if (isDead) {
 		speedX = 0;
 		col = 4;
 	}

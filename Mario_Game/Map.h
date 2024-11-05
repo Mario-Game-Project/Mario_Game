@@ -22,7 +22,6 @@ class Map
 	Flag* flag;
 	sf::View view;
 
-	int viewSpeed;
 	int mapEnd;
 
 	void renderFloor();
@@ -41,10 +40,11 @@ public:
 	int checkLeftCollision(sf::Sprite* sprite , bool isBig  ,bool isMario);
 	int checkRightCollision(sf::Sprite* sprite , bool isBig);
 	int checkUpCollision(sf::Sprite* sprite , bool isBig);
-
 	int checkEndFlag(sf::Sprite* sprite);
 	bool checkCastleDoor(sf::Sprite* sprite);
 	bool checkPowerUp(sf::Sprite* sprite);
+
+	sf::Vector2f getViewCenter();
 	void draw(sf::RenderWindow* window , float delta);
 	void mapView(sf::Sprite* sprite , float delta);
 };

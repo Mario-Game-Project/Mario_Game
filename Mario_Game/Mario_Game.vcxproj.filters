@@ -57,6 +57,9 @@
     <ClCompile Include="Flag.cpp">
       <Filter>Source Files\Map Components</Filter>
     </ClCompile>
+    <ClCompile Include="Screens.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -91,6 +94,9 @@
     </ClInclude>
     <ClInclude Include="Flag.h">
       <Filter>Header Files\Map Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Screens.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
