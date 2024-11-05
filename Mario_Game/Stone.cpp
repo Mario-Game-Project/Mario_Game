@@ -79,6 +79,16 @@ int Stone::checkLeftCollision(sf::Sprite* sprite)
 	return -1;
 }
 
+sf::Vector2f Stone::getStartPos()
+{
+	return tiles.at(0).getPosition();
+}
+
+sf::Vector2f Stone::getEndPos()
+{
+	return tiles.at(tiles.size() - 1).getPosition() + sf::Vector2f(tiles.at(0).getGlobalBounds().width, 0);
+}
+
 void Stone::draw(sf::RenderWindow* window)
 {
 	for (sf::Sprite tile : tiles) {

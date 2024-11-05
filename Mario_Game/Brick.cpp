@@ -210,6 +210,16 @@ int Brick::checkUpCollision(sf::Sprite* sprite, bool isBig)
 	return -1;
 }
 
+sf::Vector2f Brick::getStartPos()
+{
+	return tile.getPosition();
+}
+
+sf::Vector2f Brick::getEndPos()
+{
+	return tile.getPosition() + sf::Vector2f( tile.getGlobalBounds().width ,0);
+}
+
 void Brick::draw(sf::RenderWindow* window)
 {
 	breakBounce();

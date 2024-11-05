@@ -24,6 +24,8 @@ public:
 	int checkLeftCollision(sf::Sprite* sprite, bool isBig);
 	int checkDownCollision(sf::Sprite* sprite, bool isBig);
 	int checkUpCollision(sf::Sprite* sprite, bool isBig);
-	//void breakIt();	
+	
+	sf::Vector2f getStartPos();
+	sf::Vector2f getEndPos();
 	void draw(sf::RenderWindow* window);
 };

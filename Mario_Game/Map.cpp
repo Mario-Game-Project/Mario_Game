@@ -40,7 +40,6 @@ void Map::renderPipes()
 		Pipe* pipe = new Pipe(texture, 3, 126, 20);
 		pipes.push_back(pipe);
 	}
-
 }
 
 void Map::renderBricksBlocks()
@@ -283,14 +282,14 @@ void Map::renderStones()
 {
 	int posX = mapEnd - 32;
 	for (int i = 0; i < 10; i++) {
-		Stone* stone = new Stone(texture, posX -10 + i, 22 - i, 11 - i);
+		Stone* stone = new Stone(texture, posX - 10 + i, 22 - i, 11 - i);
 		stones.push_back(stone);
 	}
 }
 
 void Map::renderCastleFlag()
 {
-	castle = new Castle(texture, mapEnd-15, 23-10);
+	castle = new Castle(texture, mapEnd - 15.5, 23 - 10);
 	flag = new Flag(texture, mapEnd - 25, 22, 14);
 }
 
@@ -321,111 +320,224 @@ Map::Map(float winWidth, float winHeight)
 
 	// Setting View :
 
-	view.setCenter(sf::Vector2f(winWidth / 2, (winHeight / 2) ));
+	view.setCenter(sf::Vector2f(winWidth / 2, (winHeight / 2)));
 	view.setSize(sf::Vector2f(winWidth, winHeight));
 	view.zoom(1);
+
+	winRightBorder = view.getCenter().x + view.getSize().x / 2;
+	winLeftBorder = view.getCenter().x - view.getSize().x / 2;
 }
 
-int Map::checkDownCollision(sf::Sprite* sprite , bool isBig)
+int Map::checkDownCollision(sf::Sprite* sprite, bool isBig)
 {
 	for (Floor* floor : floors) {
-		int res = floor->checkDownCollision(sprite);
-		if (res > -1) return res;
+		int tileLeft = floor->getStartPos().x;
+		int tileRight = floor->getEndPos().x;
+
+		if (tileLeft < winRightBorder && tileRight > winLeftBorder) // only check if not out of view
+		{
+			int res = floor->checkDownCollision(sprite);
+			if (res > -1) return res;
+		}
+		else if (tileLeft > winRightBorder) break;
+
 	}
 
 	for (Pipe* pipe : pipes) {
-		int res = pipe->checkDownCollision(sprite);
-		if (res > -1) return res;
+
+		int tileLeft = pipe->getStartPos().x;
+		int tileRight = pipe->getEndPos().x;
+
+		if (tileLeft < winRightBorder && tileRight > winLeftBorder) // only check if not out of view
+		{
+			int res = pipe->checkDownCollision(sprite);
+			if (res > -1) return res;
+		}
+		else if (tileLeft > winRightBorder) break;
 	}
 
 	for (Brick* brick : bricks) {
-		int res = brick->checkDownCollision(sprite , isBig);
-		if (res > -1) return res;
+
+		int tileLeft = brick->getStartPos().x;
+		int tileRight = brick->getEndPos().x;
+
+		if (tileLeft < winRightBorder && tileRight > winLeftBorder) // only check if not out of view
+		{
+			int res = brick->checkDownCollision(sprite, isBig);
+			if (res > -1) return res;
+		}
+		else if (tileLeft > winRightBorder) break;
 	}
 
 	for (QuestionBlock* block : blocks)
 	{
-		int res = block->checkDownCollision(sprite , isBig);
-		if (res > -1) return res;
+		int tileLeft = block->getStartPos().x;
+		int tileRight = block->getEndPos().x;
+
+		if (tileLeft < winRightBorder && tileRight > winLeftBorder) // only check if not out of view
+		{
+			int res = block->checkDownCollision(sprite, isBig);
+			if (res > -1) return res;
+		}
+		else if (tileLeft > winRightBorder) break;
+
 	}
 
 	for (Stone* stone : stones) {
-		int res = stone->checkDownCollision(sprite);
-		if (res > -1) return res;
-	}
 
+		int tileLeft = stone->getStartPos().x;
+		int tileRight = stone->getEndPos().x;
+
+		if (tileLeft < winRightBorder && tileRight > winLeftBorder) // only check if not out of view
+		{
+			int res = stone->checkDownCollision(sprite);
+			if (res > -1) return res;
+		}
+		else if (tileLeft > winRightBorder) break;
+	}
 	return -1;
 }
 
-int Map::checkLeftCollision(sf::Sprite* sprite , bool isBig , bool isMario)
+int Map::checkLeftCollision(sf::Sprite* sprite, bool isBig, bool isMario)
 {
 	// fixing left border for mario only
-	int leftBorder = view.getCenter().x - view.getSize().x/2 + 10;
-	if ( isMario && sprite->getPosition().x < leftBorder ) return leftBorder ;
+	int leftBorder = view.getCenter().x - view.getSize().x / 2 + 10;
+	if (isMario && sprite->getPosition().x < leftBorder) return leftBorder;
 
 	for (Pipe* pipe : pipes) {
-		int res = pipe->checkLeftCollision(sprite);
-		if (res > -1) return res;
+		int tileLeft = pipe->getStartPos().x;
+		int tileRight = pipe->getEndPos().x;
+
+		if (tileLeft < winRightBorder && tileRight > winLeftBorder) // only check if not out of view
+		{
+			int res = pipe->checkLeftCollision(sprite);
+			if (res > -1) return res;
+		}
+		else if (tileLeft > winRightBorder) break;
 	}
 
 	for (Brick* brick : bricks) {
-		int res = brick->checkLeftCollision(sprite , isBig);
-		if (res > -1) {
-			return res;
+
+		int tileLeft = brick->getStartPos().x;
+		int tileRight = brick->getEndPos().x;
+
+		if (tileLeft < winRightBorder && tileRight > winLeftBorder) // only check if not out of view
+		{
+			int res = brick->checkLeftCollision(sprite, isBig);
+			if (res > -1) return res;
 		}
+		else if (tileLeft > winRightBorder) break;
 	}
 
 	for (QuestionBlock* block : blocks)
 	{
-		int res = block->checkLeftCollision(sprite , isBig);
-		if (res > -1) return res;
+		int tileLeft = block->getStartPos().x;
+		int tileRight = block->getEndPos().x;
+
+		if (tileLeft < winRightBorder && tileRight > winLeftBorder) // only check if not out of view
+		{
+			int res = block->checkLeftCollision(sprite, isBig);
+			if (res > -1) return res;
+		}
+		else if (tileLeft > winRightBorder) break;
+
 	}
 
 	for (Stone* stone : stones) {
-		int res = stone->checkLeftCollision(sprite);
-		if (res > -1) return res;
+
+		int tileLeft = stone->getStartPos().x;
+		int tileRight = stone->getEndPos().x;
+
+		if (tileLeft < winRightBorder && tileRight > winLeftBorder) // only check if not out of view
+		{
+			int res = stone->checkLeftCollision(sprite);
+			if (res > -1) return res;
+		}
+		else if (tileLeft > winRightBorder) break;
 	}
 
 	return -1;
 }
 
-int Map::checkRightCollision(sf::Sprite* sprite , bool isBig)
+int Map::checkRightCollision(sf::Sprite* sprite, bool isBig)
 {
 	for (Pipe* pipe : pipes) {
-		int res = pipe->checkRightCollision(sprite);
-		if (res > -1) return res;
+		int tileLeft = pipe->getStartPos().x;
+		int tileRight = pipe->getEndPos().x;
+
+		if (tileLeft < winRightBorder && tileRight > winLeftBorder) // only check if not out of view
+		{
+			int res = pipe->checkRightCollision(sprite);
+			if (res > -1) return res;
+		}
+		else if (tileLeft > winRightBorder) break;
 	}
 
+
 	for (Brick* brick : bricks) {
-		int res = brick->checkRightCollision(sprite , isBig);
-		if (res > -1) return res;
+		int tileLeft = brick->getStartPos().x;
+		int tileRight = brick->getEndPos().x;
+
+		if (tileLeft < winRightBorder && tileRight > winLeftBorder) // only check if not out of view
+		{
+			int res = brick->checkRightCollision(sprite, isBig);
+			if (res > -1) return res;
+		}
+		else if (tileLeft > winRightBorder) break;
 	}
 
 	for (QuestionBlock* block : blocks)
 	{
-		int res = block->checkRightCollision(sprite , isBig);
-		if (res > -1) return res;
+		int tileLeft = block->getStartPos().x;
+		int tileRight = block->getEndPos().x;
+
+		if (tileLeft < winRightBorder && tileRight > winLeftBorder) // only check if not out of view
+		{
+			int res = block->checkRightCollision(sprite, isBig);
+			if (res > -1) return res;
+		}
+		else if (tileLeft > winRightBorder) break;
 	}
 
 	for (Stone* stone : stones) {
-		int res = stone->checkRightCollision(sprite);
-		if (res > -1) return res;
+		int tileLeft = stone->getStartPos().x;
+		int tileRight = stone->getEndPos().x;
+
+		if (tileLeft < winRightBorder && tileRight > winLeftBorder) // only check if not out of view
+		{
+			int res = stone->checkRightCollision(sprite);
+			if (res > -1) return res;
+		}
+		else if (tileLeft > winRightBorder) break;
 	}
 
 	return -1;
 }
 int Map::checkUpCollision(sf::Sprite* sprite, bool isBig)
 {
-
 	for (Brick* brick : bricks) {
-		int res = brick->checkUpCollision(sprite, isBig);
-		if (res > -1) return res;
+		int tileLeft = brick->getStartPos().x;
+		int tileRight = brick->getEndPos().x;
+
+		if (tileLeft < winRightBorder && tileRight > winLeftBorder) // only check if not out of view
+		{
+			int res = brick->checkUpCollision(sprite, isBig);
+			if (res > -1) return res;
+		}
+		else if (tileLeft > winRightBorder) break;
 	}
 
 	for (QuestionBlock* block : blocks)
 	{
-		int res = block->checkUpCollision(sprite, isBig);
-		if (res > -1) return res;
+		int tileLeft = block->getStartPos().x;
+		int tileRight = block->getEndPos().x;
+
+		if (tileLeft < winRightBorder && tileRight > winLeftBorder) // only check if not out of view
+		{
+			int res = block->checkUpCollision(sprite, isBig);
+			if (res > -1) return res;
+		}
+		else if (tileLeft > winRightBorder) break;
 	}
 
 	return -1;
@@ -433,23 +545,32 @@ int Map::checkUpCollision(sf::Sprite* sprite, bool isBig)
 
 int Map::checkEndFlag(sf::Sprite* sprite)
 {
-	
-	return flag->checkPoleCollision(sprite);
+	if (flag->getPosition().x < winRightBorder) return flag->checkPoleCollision(sprite);
+
+	return -1;
 }
 
 bool Map::checkCastleDoor(sf::Sprite* sprite)
 {
-	return castle->castleDoor(sprite);
+	if (castle->getPosition().x < winRightBorder) return castle->castleDoor(sprite);
+
+	return false;
 }
-
-
 
 bool Map::checkPowerUp(sf::Sprite* sprite)
 {
 	for (QuestionBlock* block : blocks) {
-		bool res = block->checkPowerUp(sprite);
-		if (res) return res;
+		int tileLeft = block->getStartPos().x;
+		int tileRight = block->getEndPos().x;
+
+		if (tileLeft < winRightBorder && tileRight > winLeftBorder) // only check if not out of view
+		{
+			bool res = block->checkPowerUp(sprite);
+			if (res) return res;
+		}
+		else if (tileLeft > winRightBorder) break;
 	}
+
 	return false;
 }
 
@@ -459,29 +580,81 @@ void Map::draw(sf::RenderWindow* window, float delta)
 
 	window->setView(view);
 
-	for (Floor* tile : floors) tile->draw(window);
+	for (Floor* floor : floors)
+	{
+		int tileLeft = floor->getStartPos().x;
+		int tileRight = floor->getEndPos().x;
 
-	for (Pipe* tile : pipes) tile->draw(window);
+		if (tileLeft < winRightBorder && tileRight > winLeftBorder) floor->draw(window); // only render if not out of view
+		else if (tileLeft > winRightBorder) break;
+	}
 
-	for (Brick* brick : bricks) brick->draw(window);
+	for (Pipe* pipe : pipes)
+	{
+		int tileLeft = pipe->getStartPos().x;
+		int tileRight = pipe->getEndPos().x;
 
-	for (QuestionBlock* block : blocks) block->draw(window, delta, this);
+		/* if (tileLeft < winRightBorder)
+		{
+			if (tileRight < winLeftBorder)
+			{
+				delete pipe;
+				pipes.erase(pipes.begin());
+			}
+			else pipe->draw(window);
+			std::cout << pipes.size() << std::endl;
+		}
+		else break;
+		*/
 
-	for (Stone* stone : stones) stone->draw(window);
+		if (tileLeft < winRightBorder && tileRight > winLeftBorder) pipe->draw(window); // only render if not out of view
+		else if (tileLeft > winRightBorder) break;
+	}
 
-	castle->draw(window);
-	flag->draw(window , delta);
+
+	for (Brick* brick : bricks)
+	{
+		int tileLeft = brick->getStartPos().x;
+		int tileRight = brick->getEndPos().x;
+
+		if (tileLeft < winRightBorder && tileRight > winLeftBorder) brick->draw(window); // only render if not out of view
+		else if (tileLeft > winRightBorder) break;
+	}
+
+	for (QuestionBlock* block : blocks)
+	{
+		int tileLeft = block->getStartPos().x;
+		int tileRight = block->getEndPos().x;
+
+		if (tileLeft < winRightBorder && tileRight > winLeftBorder) block->draw(window, delta, this); // only render if not out of view
+		else if (tileLeft > winRightBorder) break;
+	}
+
+	for (Stone* stone : stones)
+	{
+		int tileLeft = stone->getStartPos().x;
+		int tileRight = stone->getEndPos().x;
+
+		if (tileLeft < winRightBorder && tileRight > winLeftBorder) stone->draw(window); // only render if not out of view
+		else if (tileLeft > winRightBorder) break;
+	}
+
+	if (castle->getPosition().x < winRightBorder) castle->draw(window);
+
+	if (flag->getPosition().x < winRightBorder) flag->draw(window, delta);
 }
 
 void Map::mapView(sf::Sprite* sprite, float delta)
 {
+	winRightBorder = view.getCenter().x + view.getSize().x / 2;
+	winLeftBorder = view.getCenter().x - view.getSize().x / 2;
+
 	background.setPosition(view.getCenter().x - (view.getSize().x / 2.0), view.getCenter().y - (view.getSize().y / 2.0));
 
-	if (view.getCenter().x + view.getSize().x / 2 >= mapEnd*32) return ;
+	if (view.getCenter().x + view.getSize().x / 2 >= mapEnd * 32) return;
 
 	int speed = sprite->getPosition().x - view.getCenter().x;
 
 	if (speed > 0) view.setCenter(view.getCenter().x + speed, view.getCenter().y);
-	
 }
 

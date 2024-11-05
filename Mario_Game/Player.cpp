@@ -54,7 +54,7 @@ void Player::jump()
 
 void Player::enemyKilled()
 {
-	speedY = -200;
+	speedY = -300;
 }
 
 void Player::checkEnemyCollision(sf::Sprite* enemy)
@@ -64,10 +64,10 @@ void Player::checkEnemyCollision(sf::Sprite* enemy)
 	float spriteLeft = sprite.getGlobalBounds().left;
 	float spriteRight = spriteLeft + spriteWidth;
 
-	float enemyTop = enemy->getGlobalBounds().top + 45;
-	float enemyBottom = enemyTop + enemy->getGlobalBounds().height - 45;
-	float enemyLeft = enemy->getGlobalBounds().left + 10;
-	float enemyRight = enemyLeft + enemy->getGlobalBounds().width - 20;
+	float enemyTop = enemy->getGlobalBounds().top + 42;
+	float enemyBottom = enemyTop + enemy->getGlobalBounds().height - 42;
+	float enemyLeft = enemy->getGlobalBounds().left + 8;
+	float enemyRight = enemyLeft + enemy->getGlobalBounds().width - 16;
 
 	// TODO : FIX FOR EXTRA SPACES IN BOTH SPTIRES 
 
@@ -77,10 +77,12 @@ void Player::checkEnemyCollision(sf::Sprite* enemy)
 		&& enemyLeft < spriteRight
 		&& enemyRight > spriteLeft
 		&& enemyTop < spriteBottom
+		&& enemyBottom >= spriteBottom
 		) {
 
 		if (isBig) {
 			freeze = true;
+			isInvisible = true;
 			spriteClock.restart();
 			row = row - 2;
 			isBig = false;
@@ -177,7 +179,11 @@ void Player::update(float delta, bool isMoving)
 			speedY = 100;
 			col = 5;
 		}
-		else moveRight(delta);
+		else 
+		{
+			speedY = 0;
+			moveRight(delta);
+		}
 	}
 
 	if (reachedCastle) {

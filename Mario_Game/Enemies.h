@@ -6,7 +6,11 @@
 class Enemies
 {
 	void checkEnemiesCollision();
+
 public:
+	int winRightBorder;
+	int winLeftBorder;
+
 	std::vector<Enemy*> enemies;
 	Enemies(sf::Texture* texture);
 	void update(Map* map , float delta);

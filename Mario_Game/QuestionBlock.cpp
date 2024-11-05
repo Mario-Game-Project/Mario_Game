@@ -263,8 +263,13 @@ void QuestionBlock::draw(sf::RenderWindow* window, float delta, Map* map)
 	window->draw(tile);
 }
 
-void QuestionBlock::collide(sf::Sprite&)
+sf::Vector2f QuestionBlock::getStartPos()
 {
+	return tile.getPosition(); ;
+}
 
+sf::Vector2f QuestionBlock::getEndPos()
+{
+	return tile.getPosition() + sf::Vector2f(tile.getGlobalBounds().width, 0);
 }
 

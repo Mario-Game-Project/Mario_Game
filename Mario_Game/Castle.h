@@ -6,7 +6,8 @@ class Castle
 
 public:
 	Castle(sf::Texture&, float x, float y);
-	sf::Sprite* getSprite();
+
+	sf::Vector2f getPosition();
 	bool castleDoor(sf::Sprite* sprite);
 	void draw(sf::RenderWindow* window);
 };

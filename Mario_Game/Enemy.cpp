@@ -1,7 +1,7 @@
 #include "Enemy.h"
 
 Enemy::Enemy(sf::Texture* texture, int x, int y) :
-	enemySpeed_X(85),
+	enemySpeed_X(50),
 	col(0),
 	row(0),
 	gravity(980),
@@ -21,14 +21,50 @@ sf::Sprite* Enemy::getSprite()
 	return &enemySprite;
 }
 
+sf::Vector2f Enemy::getStartPos()
+{
+	return enemySprite.getPosition();
+}
+
+sf::Vector2f Enemy::getEndPos()
+{
+	return enemySprite.getPosition() + sf::Vector2f(enemySprite.getGlobalBounds().width, 0);
+}
+
 void Enemy::checkEnemiesCollision(Enemy* enemy)
 {
-	if (this->enemySprite.getGlobalBounds().intersects(enemy->enemySprite.getGlobalBounds())) {
+	sf::FloatRect enemyBounds = this->enemySprite.getGlobalBounds();
+	sf::FloatRect anotherEnemyBounds = enemy->enemySprite.getGlobalBounds();
+
+
+	if (enemyBounds.intersects(anotherEnemyBounds)) {
 		// Reverse direction for both enemies upon collision
+
+		// Check head collision
+		if (enemyBounds.top + enemyBounds.height >= anotherEnemyBounds.top + 32
+			&& enemyBounds.top + enemyBounds.height < anotherEnemyBounds.top + anotherEnemyBounds.height)
+		{
+			enemySprite.setPosition(sf::Vector2f(enemySprite.getPosition().x, enemy ->enemySprite.getPosition().y - 40));
+			this->enemySpeed_Y = -300;
+		}
+		/*else if (anotherEnemyBounds.top + anotherEnemyBounds.height >= enemyBounds.top + 32
+			&& anotherEnemyBounds.top + anotherEnemyBounds.height < enemyBounds.top + enemyBounds.height)
+		{
+			enemy->enemySpeed_Y = -300;
+			enemy->enemySprite.move(0, -10);
+		}*/
+
 		this->enemyMovingRight = !this->enemyMovingRight;
 		enemy->enemyMovingRight = !enemy->enemyMovingRight;
-	}
 
+
+		// For avoiding bugs : 
+		if (this->enemyMovingRight) this->enemySprite.move(5, 0);
+		else this->enemySprite.move(-5, 0);
+
+		if (enemy->enemyMovingRight) enemy->enemySprite.move(5, 0);
+		else enemy->enemySprite.move(-5, 0);
+	}
 }
 
 void Enemy::checkCollisionWithPlayer(Sprite& playerSprite) {
@@ -37,11 +73,11 @@ void Enemy::checkCollisionWithPlayer(Sprite& playerSprite) {
 	FloatRect enemyBounds = enemySprite.getGlobalBounds();
 
 	// Check if player is colliding with enemy from upside
-	if (playerBounds.intersects(enemyBounds) 
-		&& !enemyDied 
+	if (playerBounds.intersects(enemyBounds)
+		&& !enemyDied
 		&& playerBounds.top + playerBounds.height >= enemyBounds.top + 32 // `+ 45` for accuraccy as per spritesheet
-		&& playerBounds.left + playerBounds.width > enemyBounds.left + 10 // `+5` for accuraccy as per spritesheet
-		&& playerBounds.left < enemyBounds.left + enemyBounds.width - 10) {
+		&& playerBounds.left + playerBounds.width > enemyBounds.left + 9 // `+5` for accuraccy as per spritesheet
+		&& playerBounds.left < enemyBounds.left + enemyBounds.width - 9) {
 
 		enemySpeed_Y = -300; // jump
 		enemyDied = true;
@@ -52,11 +88,11 @@ void Enemy::checkCollisionWithPlayer(Sprite& playerSprite) {
 void Enemy::update(float delta)
 {
 	bool updateTexture = false;
-	Vector2f enemyPosition = enemySprite.getPosition();
+	Vector2f enemyMove;
 
 	// Left-Right movements
 	if (enemyMovingRight) {
-		enemyPosition.x += enemySpeed_X * delta;
+		enemyMove.x += enemySpeed_X * delta;
 
 		if (enemyClock.getElapsedTime().asMilliseconds() > 100) {
 			col = ++col % 5;
@@ -66,7 +102,7 @@ void Enemy::update(float delta)
 		}
 	}
 	else {
-		enemyPosition.x -= enemySpeed_X * delta;
+		enemyMove.x -= enemySpeed_X * delta;
 		if (enemyClock.getElapsedTime().asMilliseconds() > 100) {
 			col = ++col % 5;
 			row = 4;
@@ -86,7 +122,8 @@ void Enemy::update(float delta)
 	// gravity :
 	if (!isGrounded) {  // Only apply gravity if not grounded
 		enemySpeed_Y += gravity * delta; // Increase downward velocity due to gravity
-		enemyPosition.y += enemySpeed_Y * delta; // Update vertical position
+		enemyMove.x = 0;
+		enemyMove.y += enemySpeed_Y * delta; // Update vertical position
 	}
 	else {
 		enemySpeed_Y = 0;  // Reset vertical velocity
@@ -94,7 +131,7 @@ void Enemy::update(float delta)
 	}
 
 	if (updateTexture) enemySprite.setTextureRect(IntRect(col * 32, row * 64, 32, 64));
-	enemySprite.setPosition(enemyPosition);
+	enemySprite.move(enemyMove);
 }
 void Enemy::draw(sf::RenderWindow* window)
 {

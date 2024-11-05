@@ -11,5 +11,7 @@ public:
 
 	int checkLeftCollision(sf::Sprite* sprite);
 
+	sf::Vector2f getStartPos();
+	sf::Vector2f getEndPos();
 	int checkDownCollision(sf::Sprite* sprite);
 };

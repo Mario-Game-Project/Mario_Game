@@ -10,6 +10,7 @@ class Flag
 public:
 	Flag(sf::Texture&, float tileX, float tileY , int height);
 	int checkPoleCollision(sf::Sprite* sprite);
+	sf::Vector2f getPosition();
 	void draw(sf::RenderWindow* window , float delta);
 };
 

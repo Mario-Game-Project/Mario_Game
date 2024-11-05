@@ -36,6 +36,8 @@ public:
 	int checkUpCollision(sf::Sprite* sprite, bool isBig);
 	bool checkPowerUp(sf::Sprite*);
 	void draw(sf::RenderWindow* window, float, Map*);
-	void collide(sf::Sprite&);
+
+	sf::Vector2f getStartPos();
+	sf::Vector2f getEndPos();
 };
 

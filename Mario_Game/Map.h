@@ -32,6 +32,9 @@ class Map
 	void renderCastleFlag();
 
 public:
+	int winRightBorder;
+	int winLeftBorder;
+
 	Map(float winWidth, float winHeight);
 
 	int checkDownCollision(sf::Sprite* sprite , bool isBig);

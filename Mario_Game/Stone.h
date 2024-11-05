@@ -8,6 +8,8 @@ public:
 	int checkDownCollision(sf::Sprite*);
 	int checkRightCollision(sf::Sprite*);
 	int checkLeftCollision(sf::Sprite*);
-	//void breakIt();	
+	
+	sf::Vector2f getStartPos();
+	sf::Vector2f getEndPos();
 	void draw(sf::RenderWindow* window);
 };

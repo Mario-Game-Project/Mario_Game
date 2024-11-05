@@ -1,19 +1,20 @@
-﻿  Map.cpp
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(286,62): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(286,54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(286,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(293,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(294,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(363,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(363,17): warning C4244:         with
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(363,17): warning C4244:         [
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(363,17): warning C4244:             T=float
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(363,17): warning C4244:         ]
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(478,91): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(478,44): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(482,12): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(482,12): warning C4244:         with
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(482,12): warning C4244:         [
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(482,12): warning C4244:             T=float
-C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Map.cpp(482,12): warning C4244:         ]
+﻿  Enemy.cpp
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(16,38): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(16,38): warning C4244:         with
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(16,38): warning C4244:         [
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(16,38): warning C4244:             T=float
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(16,38): warning C4244:         ]
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(16,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(16,35): warning C4244:         with
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(16,35): warning C4244:         [
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(16,35): warning C4244:             T=float
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Enemy.cpp(16,35): warning C4244:         ]
+  Player.cpp
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(36,50): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(42,50): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(51,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(154,33): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(155,33): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\HP\OneDrive\Code\Mario Game\Mario_Game\Player.cpp(162,21): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
   Mario_Game.vcxproj -> C:\Users\HP\OneDrive\Code\Mario Game\x64\Debug\Mario_Game.exe

@@ -142,9 +142,6 @@ int main()
 		// Upgrade :
 		if (map.checkPowerUp(player.getSprite())) player.Upgrade();
 
-		// Death / Downgrade :
-		if (!player.isDied && !player.isInvisible && enemies.checkPlayerCollision(player.getSprite())) player.enemyKilled();
-
 		if (!player.touchedFlag)
 		{
 			int flag = map.checkEndFlag(player.getSprite());
@@ -165,12 +162,23 @@ int main()
 		if (map.checkCastleDoor(player.getSprite())) player.reachedCastle = true;
 
 		/* -------------------------------- Enemies Movements : -------------------------------- */
+		enemies.winLeftBorder = map.winLeftBorder;
+		enemies.winRightBorder = map.winRightBorder;
+
 		enemies.update(&map, delta);
 
+		/* -------------------------------- Enemy-Player Collisions : -------------------------------- */
 		for (Enemy* enemy : enemies.enemies)
 			if (!enemy->enemyDied) player.checkEnemyCollision(enemy->getSprite());
 
+		// Death / Downgrade :
+		if (!player.isDied 
+			&& !player.isInvisible 
+			&& enemies.checkPlayerCollision(player.getSprite())
+			) player.enemyKilled();
+
 		/* --------------------------------------- Draw ---------------------------------------- */
+
 		window.clear();
 
 		map.draw(&window, delta);

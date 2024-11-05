@@ -44,6 +44,11 @@ int Flag::checkPoleCollision(sf::Sprite* sprite)
 	return -1;
 }
 
+sf::Vector2f Flag::getPosition()
+{
+	return flag.getPosition();
+}
+
 void Flag::draw(sf::RenderWindow* window ,float delta)
 {
 	if (poleCollided && flag.getPosition().y < pole[1].getPosition().y) flag.move(0, 200 * delta);

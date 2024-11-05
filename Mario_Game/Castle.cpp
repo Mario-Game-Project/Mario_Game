@@ -7,9 +7,10 @@ Castle::Castle(sf::Texture& texture, float x, float y)
 	castle.setTextureRect(sf::IntRect(0, 13*32, 12*32, 10*32));
 }
 
-sf::Sprite* Castle::getSprite()
+
+sf::Vector2f Castle::getPosition()
 {
-	return &castle;
+	return castle.getPosition();
 }
 
 bool Castle::castleDoor(sf::Sprite* sprite)

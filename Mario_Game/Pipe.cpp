@@ -67,6 +67,17 @@ int Pipe::checkLeftCollision(sf::Sprite* sprite)
 	return -1;
 }
 
+sf::Vector2f Pipe::getStartPos()
+{
+	return tiles.at(0).getPosition();
+}
+
+sf::Vector2f Pipe::getEndPos()
+{
+	return tiles.at(0).getPosition() + sf::Vector2f  (tiles.at(0).getGlobalBounds().width , 0) ;
+}
+
+
 int Pipe::checkDownCollision(sf::Sprite* sprite)
 {
 	float spriteTop = sprite->getGlobalBounds().top;

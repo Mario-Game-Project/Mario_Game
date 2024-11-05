@@ -103,6 +103,16 @@ int Floor::checkLeftCollision(sf::Sprite* sprite)
 	return -1;
 }
 
+sf::Vector2f Floor::getStartPos()
+{
+	return tiles.at(0).getPosition();
+}
+
+sf::Vector2f Floor::getEndPos()
+{
+	return tiles.at(tiles.size() - 1).getPosition();
+}
+
 void Floor::draw(sf::RenderWindow* window)
 {
 	for (sf::Sprite tile : tiles) window->draw(tile);

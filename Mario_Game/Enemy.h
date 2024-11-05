@@ -24,6 +24,8 @@ public:
     void checkCollisionWithPlayer(Sprite& player);
     void update(float deltaTime);
     sf::Sprite* getSprite();
+    sf::Vector2f getStartPos();
+    sf::Vector2f getEndPos();
     void checkEnemiesCollision(Enemy* enemy);
     void draw(sf::RenderWindow* window);
 };
