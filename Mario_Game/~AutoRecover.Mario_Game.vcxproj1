@@ -174,6 +174,7 @@ ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClCompile Include="Pipe.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="QuestionBlock.cpp" />
+    <ClCompile Include="Screens.cpp" />
     <ClCompile Include="Stone.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -187,7 +188,13 @@ ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClInclude Include="Pipe.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="QuestionBlock.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="resource1.h" />
+    <ClInclude Include="Screens.h" />
     <ClInclude Include="Stone.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Mario_Game.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -6,7 +6,12 @@
 #include "Enemies.h"
 #include "Screens.h"
 
-int main()
+
+// For release version , we are using WinMain() instead of main() 
+// This will make the console window disappear as we have made changes in Properties>Linker>System>SubSystem to "Windows" for release only 
+
+int static WinMain()
+//int main()
 {
 	/* ==================================== Creating Window ==================================== */
 
@@ -16,7 +21,7 @@ int main()
 
 	// Setting icon to window title-bar :
 	sf::Image icon;
-	if (icon.loadFromFile("./Assets/Icon/logo-0.png")) {  // Replace "icon.png" with the path to your icon file
+	if (icon.loadFromFile("./Assets/Icon/logo.png")) { 
 		window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 	}
 
@@ -80,7 +85,7 @@ int main()
 		/* ----------------------------------- Screens Logic ---------------------------------- */
 
 		// Pause and Resume on Tab press
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab) && event.type != sf::Event::LostFocus)
 		{
 			if(!tabPressed) screens.togglePause();
 			tabPressed = true;
@@ -90,7 +95,6 @@ int main()
 
 		// Pause when lost focus
 		if(event.type == sf::Event::LostFocus && !screens.isPaused) screens.togglePause();
-
 
 		// Pause when window is moved
 		sf::Vector2i currentPosition = window.getPosition();

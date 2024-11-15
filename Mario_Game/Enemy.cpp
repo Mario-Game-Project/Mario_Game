@@ -76,8 +76,8 @@ void Enemy::checkCollisionWithPlayer(Sprite& playerSprite) {
 	if (playerBounds.intersects(enemyBounds)
 		&& !enemyDied
 		&& playerBounds.top + playerBounds.height >= enemyBounds.top + 32 // `+ 45` for accuraccy as per spritesheet
-		&& playerBounds.left + playerBounds.width > enemyBounds.left + 9 // `+5` for accuraccy as per spritesheet
-		&& playerBounds.left < enemyBounds.left + enemyBounds.width - 9) {
+		&& playerBounds.left + playerBounds.width > enemyBounds.left + 8.5 // `+5` for accuraccy as per spritesheet
+		&& playerBounds.left < enemyBounds.left + enemyBounds.width - 8.5) {
 
 		enemySpeed_Y = -300; // jump
 		enemyDied = true;

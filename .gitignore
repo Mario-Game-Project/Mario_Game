@@ -7,5 +7,4 @@
 *.idb
 *.log
 *.tlog
-*.exe.recipe
-*.exe
+X64/

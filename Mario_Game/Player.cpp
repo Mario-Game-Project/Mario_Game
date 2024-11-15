@@ -77,7 +77,6 @@ void Player::checkEnemyCollision(sf::Sprite* enemy)
 		&& enemyLeft < spriteRight
 		&& enemyRight > spriteLeft
 		&& enemyTop < spriteBottom
-		&& enemyBottom >= spriteBottom
 		) {
 
 		if (isBig) {
